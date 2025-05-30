@@ -5,7 +5,7 @@ import { Cog6ToothIcon } from "@heroicons/react/24/outline"
 
 export function ProfileCard({name, subscription} : {name : string, subscription : string}) {
     return (
-        <div className="px-4 py-3 border-1 border-zinc-300 rounded-3xl flex flex-row items-center justify-between">
+        <div className="px-4 py-3 border-1 border-zinc-300 rounded-3xl flex flex-row items-center justify-between cursor-pointer hover:bg-zinc-100">
             <div className="flex flex-row items-center gap-5">
                 {/* Change this later */}
                 <UserCircleIcon className="size-10"/>
