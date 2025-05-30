@@ -91,12 +91,11 @@ export function NavigationDashboard(): React.ReactElement {
       {/* Desktop Nav (hidden on mobile) */}
       <div className="
                     fixed h-screen full-size hidden w-72 
-                    border-1 rounded-3xl border-zinc-300
+                    border-1 rounded-r-3xl border-zinc-300
                     px-7 py-8 xl:flex flex-col gap-8 z-50
                     bg-white
                     "
         >
-        {/* Your desktop navigation goes here */}
             <Image src='/LogoBlack.svg' alt='CourserAI' width={147} height={35} />
             <ul className="flex flex-col gap-1 h-full">
             {
