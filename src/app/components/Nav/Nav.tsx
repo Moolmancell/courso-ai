@@ -9,6 +9,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { HomeIcon } from "@heroicons/react/24/outline";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { Upgrade } from "../Upgrade Plan/Upgrade";
+import { ProfileCard } from "../ProfileCard/ProfileCard";
+import { ClockIcon } from "@heroicons/react/24/outline";
 
 interface NavLinkItem { // Renamed to avoid conflict with the component
   name: string
@@ -22,6 +24,7 @@ export function NavigationDashboard(): React.ReactElement {
   const links: NavLinkItem[] = [
     { name: "Home", href: "/dashboard", icon: HomeIcon },
     { name: "Courses", href: "/dashboard/courses", icon: AcademicCapIcon },
+    { name: "History", href: "/dashboard/history", icon: ClockIcon }
   ]
 
   return (
@@ -45,7 +48,7 @@ export function NavigationDashboard(): React.ReactElement {
             w-full max-w-80 border-r border-zinc-300
             rounded-r-3xl py-7 px-4 md:px-7 transition-transform
             duration-300 ease-in-out transform z-50 flex
-            flex-col gap-16
+            flex-col gap-8
             ${isOpen ? 'translate-x-0' : '-translate-x-full'}
             `}
         >
@@ -86,8 +89,34 @@ export function NavigationDashboard(): React.ReactElement {
       )}
 
       {/* Desktop Nav (hidden on mobile) */}
-      <div className="full-size hidden xl:block">
+      <div className="
+                    fixed h-screen full-size hidden w-72 
+                    border-1 rounded-3xl border-zinc-300
+                    px-7 py-8 xl:flex flex-col gap-8 z-50
+                    bg-white
+                    "
+        >
         {/* Your desktop navigation goes here */}
+            <Image src='/LogoBlack.svg' alt='CourserAI' width={147} height={35} />
+            <ul className="flex flex-col gap-1 h-full">
+            {
+                links.map((obj) =>
+                <li key={obj.href}>
+                    <NavLink
+                    href={obj.href}
+                    name={obj.name}
+                    icon={obj.icon}
+                    onClick={() => setOpen(false)}
+                    />
+                </li>)
+            }
+            </ul>
+
+            <div className="flex flex-col gap-3">
+                <Upgrade/>
+                <ProfileCard name="John Doe" subscription="Free Plan"/>
+            </div>
+
       </div>
     </nav>
   )
