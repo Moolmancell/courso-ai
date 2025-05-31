@@ -13,7 +13,7 @@ export default function DashboardLayout({children} : {children : React.ReactNode
     return (
         <div className={dm_sans.variable}>
             <NavigationDashboard/>
-            <main className="bg-zinc-100 font-dm-sans pt-16 min-h-screen">
+            <main className="bg-zinc-100 font-dm-sans pt-16 min-h-screen xl:pt-0 xl:pl-72">
                 {children}
             </main>
         </div>
