@@ -20,7 +20,7 @@ export function NavLink({href, name, icon: Icon, onClick = () => null} :
                     `} 
             href={href} onClick={onClick}>
             <Icon className={`size-6 ${isActive ? "outline-blue-900" : "outline-black"}`}/>
-            <h2 className="text-base ">{name}</h2>
+            <h2 className="text-base">{name}</h2>
         </Link>
     )
 }
