@@ -9,7 +9,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { HomeIcon } from "@heroicons/react/24/outline";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { Upgrade } from "../Upgrade Plan/Upgrade";
-import { ProfileCard } from "../ProfileCard/ProfileCard";
 import { ClockIcon } from "@heroicons/react/24/outline";
 
 interface NavLinkItem { // Renamed to avoid conflict with the component
@@ -113,7 +112,6 @@ export function NavigationDashboard(): React.ReactElement {
 
             <div className="flex flex-col gap-3">
                 <Upgrade/>
-                <ProfileCard name="John Doe" subscription="Free Plan"/>
             </div>
 
       </div>

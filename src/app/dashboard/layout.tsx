@@ -1,4 +1,4 @@
-import { NavigationDashboard } from "../components/Nav/Nav"
+import { NavigationDashboard } from "../components/NavSidebar/NavSidebar"
 import { DM_Sans } from 'next/font/google';
 
 export const dm_sans = DM_Sans({
