@@ -1,4 +1,4 @@
-import { NavigationDashboard } from "../components/NavSidebar/NavSidebar"
+import { NavigationDashboard } from "../components/NavigationDashboard/NavigationDashboard"
 import { DM_Sans } from 'next/font/google';
 
 export const dm_sans = DM_Sans({
@@ -13,7 +13,7 @@ export default function DashboardLayout({children} : {children : React.ReactNode
     return (
         <div className={dm_sans.variable}>
             <NavigationDashboard/>
-            <main className="bg-zinc-100 font-dm-sans pt-16 min-h-screen xl:pt-0 xl:pl-72">
+            <main className="bg-zinc-100 font-dm-sans pt-16 min-h-screen xl:pl-72">
                 {children}
             </main>
         </div>

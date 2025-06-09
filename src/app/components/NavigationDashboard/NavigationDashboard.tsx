@@ -10,6 +10,8 @@ import { HomeIcon } from "@heroicons/react/24/outline";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { Upgrade } from "../Upgrade Plan/Upgrade";
 import { ClockIcon } from "@heroicons/react/24/outline";
+import { ChartBarSquareIcon } from "@heroicons/react/24/outline";
+import { BellIcon } from "@heroicons/react/24/outline";
 
 interface NavLinkItem { // Renamed to avoid conflict with the component
   name: string
@@ -23,21 +25,30 @@ export function NavigationDashboard(): React.ReactElement {
   const links: NavLinkItem[] = [
     { name: "Home", href: "/dashboard", icon: HomeIcon },
     { name: "Courses", href: "/dashboard/courses", icon: AcademicCapIcon },
+    { name: "Statistics", href: "/dashboard/stats", icon: ChartBarSquareIcon },
     { name: "History", href: "/dashboard/history", icon: ClockIcon }
   ]
 
   return (
     <nav className="relative"> {/* Add relative to the nav for absolute children */}
-        {/* Mobile Header (Always visible on mobile) */}
-        <div className="p-4 flex flex-row justify-between items-center md:px-8 xl:hidden bg-zinc-100 fixed top-0 w-full">
+        {/* Header */}
+        <div className="p-4 flex flex-row justify-between items-center md:px-8 bg-zinc-100 fixed top-0 w-full">
+          <div className="left-side">
             <button className="hamburger cursor-pointer" onClick={() => setOpen(true)}>
-            <Bars2Icon className="size-8" />
+              <Bars2Icon className="size-8" />
             </button>
+          </div>
 
+          <div className="right-side flex flex-row gap-4">
+            <button>
+              <BellIcon className="size-8"/>
+            </button>
             <button className="profile-button">
             {/* Needs to be dynamic */}
-            <UserCircleIcon className="size-8" />
+              <UserCircleIcon className="size-8" />
             </button>
+          </div>
+
         </div>
 
         {/* The Collapsable Container (Mobile Menu) */}
