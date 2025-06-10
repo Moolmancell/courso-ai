@@ -1,0 +1,1 @@
+export type TagVariant = 'Udemy' | 'Coursera' | 'Generated';
