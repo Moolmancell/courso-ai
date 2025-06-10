@@ -1,4 +1,4 @@
-import { TagVariant } from "../types/TagVariant";
+export type TagVariant = 'udemy' | 'coursera' | 'generated';
 
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant: TagVariant;

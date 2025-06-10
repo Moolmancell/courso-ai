@@ -25,7 +25,7 @@ export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) 
                     <CourseCard 
                         title="User Experience Foundation"
                         progress={23}
-                        source="Coursera"
+                        source="coursera"
                     />
                 </div>
             </section>

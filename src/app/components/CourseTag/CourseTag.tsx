@@ -1,19 +1,19 @@
-import { TagVariant } from "@/app/types/TagVariant";
-import { TagProps } from "@/app/interfaces/TagProps";
+import { TagVariant } from "./CourseTag.types";
+import { TagProps } from "./CourseTag.types";
 
 const VARIANT_MAP: Record<
   TagVariant,
-  { text: string; icon?: React.ReactNode; classNames: string }
+  { text: string; classNames: string }
 > = {
-  Udemy: {
+  udemy: {
     text: 'Udemy',
     classNames: 'bg-purple-500',
   },
-  Coursera: {
+  coursera: {
     text: 'Coursera',
     classNames: 'bg-blue-600',
   },
-  Generated: {
+  generated: {
     text: 'Generated',
     classNames: 'bg-sky-500',
   },
