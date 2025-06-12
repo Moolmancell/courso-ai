@@ -19,12 +19,12 @@ const VARIANT_MAP: Record<
   },
 };
 
-export const CourseTag: React.FC<TagProps> = ({ variant, className, ...props }) => {
+export const CourseTag: React.FC<TagProps> = ({ variant, className = "", ...props }) => {
   const { text, classNames } = VARIANT_MAP[variant];
 
   return (
     <span
-      className={classNames + " rounded-3xl text-white text-xs font-bold px-3 py-0.5"}
+      className={classNames + " rounded-3xl text-white text-xs font-bold px-3 py-0.5" + ` ${className}`}
       {...props}
     >
       {text}
