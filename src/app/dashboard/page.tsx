@@ -26,6 +26,7 @@ export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) 
                         title="User Experience Foundation"
                         progress={23}
                         source="coursera"
+                        courseLink="/2345"
                     />
                 </div>
             </section>
