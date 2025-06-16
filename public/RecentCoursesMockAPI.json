@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Intro to React",
+    "progress": 25,
+    "source": "udemy",
+    "courseLink": "/courses/intro-to-react"
+  },
+  {
+    "id": 2,
+    "title": "Advanced TypeScript",
+    "progress": 70,
+    "source": "udemy",
+    "courseLink": "/courses/advanced-typescript"
+  },
+  {
+    "id": 3,
+    "title": "UI Design Fundamentals",
+    "progress": 90,
+    "source": "coursera",
+    "courseLink": "/courses/ui-design-fundamentals"
+  },
+  {
+    "id": 4,
+    "title": "Next.js Fullstack Bootcamp",
+    "progress": 10,
+    "source": "generated",
+    "courseLink": "/courses/nextjs-fullstack"
+  },
+  {
+    "id": 5,
+    "title": "Database Essentials",
+    "progress": 50,
+    "source": "generated",
+    "courseLink": "/courses/database-essentials"
+  },
+  {
+    "id": 6,
+    "title": "JavaScript Mastery",
+    "progress": 80,
+    "source": "udemy",
+    "courseLink": "/courses/javascript-mastery"
+  }
+]
