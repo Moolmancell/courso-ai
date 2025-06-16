@@ -2,6 +2,7 @@ import { FinishedCourseCard } from "../components/FinishedCourseCard/FinishedCou
 import { ActiveCourseCard } from "../components/ActiveCourseCard/ActiveCourseCard"
 import Link from "next/link"
 import { CourseCard } from "../components/CourseCard/CourseCard"
+import { RecentCourses } from "../components/RecentCourses/RecentCourses"
 
 export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) {
     return (
@@ -21,13 +22,7 @@ export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) 
                 </div>
 
                 <div>
-                    {/*Add looping check database*/}
-                    <CourseCard 
-                        title="User Experience Foundation"
-                        progress={23}
-                        source="coursera"
-                        courseLink="/2345"
-                    />
+                    <RecentCourses userID="1234" />                       
                 </div>
             </section>
         </div>
