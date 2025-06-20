@@ -8,6 +8,7 @@ interface course {
     lessons: number;
     title: string;
     progress: number;
+    courseLink: string;
 }
 
 export function RecentCoursesv2({userID}:{userID: string}) {
@@ -19,7 +20,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
     const fetchData = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch(`get recent courses from user: ${userID}`)
+            const res = await fetch(`/RecentCoursesMockApi.v2.json`)
             if (!res.ok) throw new Error("Failed to fetch data");
             
             const json = await res.json();
@@ -59,6 +60,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                                     lessons={course.lessons}
                                     title={course.title}
                                     progress={course.progress}
+                                    courseLink={course.courseLink}
                                 />
                             </li>
                         ))
