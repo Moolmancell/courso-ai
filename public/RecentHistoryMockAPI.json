@@ -18,10 +18,5 @@
         "id": 4,
         "title": "Finished: Lesson 1",
         "timestamp": "2025-06-12T12:45:00"
-    },
-    {
-        "id": 5,
-        "title": "Extra Activity that should not show",
-        "timestamp": "2025-06-12T12:45:00"
     }
 ]
