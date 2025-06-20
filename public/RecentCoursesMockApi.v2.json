@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "lessons": 10,
+    "title": "Introduction to React",
+    "progress": 20
+  },
+  {
+    "id": 2,
+    "lessons": 5,
+    "title": "Advanced JavaScript Concepts",
+    "progress": 50
+  },
+  {
+    "id": 3,
+    "lessons": 12,
+    "title": "Node.js and Express Fundamentals",
+    "progress": 75
+  },
+  {
+    "id": 4,
+    "lessons": 8,
+    "title": "Data Structures and Algorithms in Python",
+    "progress": 10
+  },
+  {
+    "id": 5,
+    "lessons": 15,
+    "title": "Full-Stack Web Development with MongoDB",
+    "progress": 90
+  },
+  {
+    "id": 6,
+    "lessons": 7,
+    "title": "CSS and UI Design Principles",
+    "progress": 30
+  }
+]
