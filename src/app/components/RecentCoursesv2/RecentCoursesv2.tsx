@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { CourseCardv2 } from "../CourseCardv2/CourseCardv2";
 import { Button } from "../Button/Button";
+import { Skeleton } from "../CourseCardv2/Skeleton";
 
 interface course {
     id: number;
@@ -21,6 +22,10 @@ export function RecentCoursesv2({userID}:{userID: string}) {
         try {
             setLoading(true);
             const res = await fetch(`/RecentCoursesMockApi.v2.json`)
+
+            //simulate loading times (comment or remove in production)
+            //await new Promise(resolve => setTimeout(resolve, 1000));
+
             if (!res.ok) throw new Error("Failed to fetch data");
             
             const json = await res.json();
@@ -39,7 +44,13 @@ export function RecentCoursesv2({userID}:{userID: string}) {
     return (
         <div data-testid="recent-courses">
             {loading ? (
-                <div data-testid="loading">loading...</div>
+                <div data-testid="loading" className="grid grid-cols-1 gap-3">
+                    {
+                        Array.from({ length: 6 }).map((_, i) => (
+                            <Skeleton id={i}/>
+                        ))
+                    }
+                </div>
             ) : error ? (
                 <div data-testid="error-message">
                     Error: {error}
