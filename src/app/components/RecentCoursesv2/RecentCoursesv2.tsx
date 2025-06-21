@@ -47,7 +47,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                 <div data-testid="loading" className="grid grid-cols-1 gap-3">
                     {
                         Array.from({ length: 6 }).map((_, i) => (
-                            <Skeleton id={i}/>
+                            <Skeleton id={i} key={i}/>
                         ))
                     }
                 </div>
