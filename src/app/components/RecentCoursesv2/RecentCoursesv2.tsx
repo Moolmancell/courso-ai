@@ -51,7 +51,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                     <Button type="link" href="/dashboard/createnew">Start a Course</Button>
                 </div>
             ) : (
-                <ul>
+                <ul className="grid grid-cols-1 gap-3">
                     {
                         course.map((course: course) => (
                             <li key={course.id}>

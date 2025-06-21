@@ -10,12 +10,12 @@ describe("RecentCoursesv2", () => {
       json: async () => {
         await new Promise(resolve => setTimeout(resolve, 500)); // Add 500ms delay
         return Promise.resolve([
-          { id: 1, lessons: 10, title: "Course 1", progress: 20 },
-          { id: 2, lessons: 5, title: "Course 2", progress: 50 },
-          { id: 3, lessons: 12, title: "Course 3", progress: 75 },
-          { id: 4, lessons: 8, title: "Course 4", progress: 10 },
-          { id: 5, lessons: 15, title: "Course 5", progress: 90 },
-          { id: 6, lessons: 7, title: "Course 6", progress: 30 },
+          { id: 1, lessons: 10, title: "Course 1", progress: 20, courseLink: "/" },
+          { id: 2, lessons: 5, title: "Course 2", progress: 50, courseLink: "/" },
+          { id: 3, lessons: 12, title: "Course 3", progress: 75, courseLink: "/" },
+          { id: 4, lessons: 8, title: "Course 4", progress: 10, courseLink: "/" },
+          { id: 5, lessons: 15, title: "Course 5", progress: 90, courseLink: "/" },
+          { id: 6, lessons: 7, title: "Course 6", progress: 30, courseLink: "/" },
         ]);
       },
     } as Response);

@@ -7,7 +7,7 @@ import { beforeEach } from "vitest";
 
 describe("CourseCardv2", () => {
     beforeEach(() => {
-        render(<CourseCardv2 id={1} lessons={10} title="Foundations of User Experience UX Design" progress={23}/>)
+        render(<CourseCardv2 id={1} lessons={10} title="Foundations of User Experience UX Design" progress={23} courseLink="/"/>)
     })
     it("displays the lessons lessons", () => {
         expect(screen.getByText("10 Lessons")).toBeInTheDocument();
@@ -22,11 +22,11 @@ describe("CourseCardv2", () => {
         expect(screen.getByTestId("progress-bar")).toHaveStyle('width: 23%')
     })
     it("displays the continue button when progress is above 0", () => {
-        expect(screen.getByRole("button", {name: "Continue"})).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Continue"})).toBeInTheDocument();
     })
     it("displays the start button when progress is 0", () => {
         cleanup()
-        render(<CourseCardv2 id={1} lessons={10} title="Foundations of User Experience UX Design" progress={0}/>)
-        expect(screen.getByRole("button", {name: "Start"})).toBeInTheDocument();
+        render(<CourseCardv2 id={1} lessons={10} title="Foundations of User Experience UX Design" progress={0} courseLink="/"/>)
+        expect(screen.getByRole("link", {name: "Start"})).toBeInTheDocument();
     })
 })

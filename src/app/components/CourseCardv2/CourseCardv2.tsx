@@ -12,7 +12,7 @@ export function CourseCardv2({id,lessons, title, progress, courseLink}:
         >
             <div className="flex flex-col gap-4">
                 <div className="flex flex-row gap-3 items-center">
-                    <Image className="size-9" src={BookBlueCircle} alt=""></Image>
+                    <Image className="size-9" src={BookBlueCircle} alt="" width={36} height={36}></Image>
                     <p className="text-sm font-semibold">{lessons} Lessons</p>
                 </div>
 
