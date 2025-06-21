@@ -1,8 +1,8 @@
 import { FinishedCourseCard } from "../components/FinishedCourseCard/FinishedCourseCard"
 import { ActiveCourseCard } from "../components/ActiveCourseCard/ActiveCourseCard"
 import Link from "next/link"
-import { CourseCard } from "../components/CourseCard/CourseCard"
-import { RecentCourses } from "../components/RecentCourses/RecentCourses"
+import { RecentCoursesv2 } from "../components/RecentCoursesv2/RecentCoursesv2"
+import { RecentHistory } from "../components/RecentHistory/RecentHistory"
 
 export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) {
     return (
@@ -22,7 +22,18 @@ export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) 
                 </div>
 
                 <div>
-                    <RecentCourses userID="1234" />                       
+                    <RecentCoursesv2 userID="1234" />                       
+                </div>
+            </section>
+
+            <section className="px-4 mb-12">
+                <div className="flex flex-row justify-between items-center my-4">
+                    <h1 className="font-medium text-2xl">History</h1>
+                    <Link href={"/dashboard/history"} className="text-sm font-semibold underline">See all courses</Link>
+                </div>
+
+                <div>
+                    <RecentHistory userID="1234" />                     
                 </div>
             </section>
         </div>
