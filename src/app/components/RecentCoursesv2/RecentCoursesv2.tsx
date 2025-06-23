@@ -4,6 +4,8 @@ import { CourseCardv2 } from "../CourseCardv2/CourseCardv2";
 import { Button } from "../Button/Button";
 import { Skeleton } from "../CourseCardv2/Skeleton";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import NoCourseFound from "@/app/icons/NoCourseFound.svg"
 
 interface course {
     id: number;
@@ -59,9 +61,9 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                 </div>
             ) : course.length === 0 && !loading && !error ? (
                 <div data-testid="no-courses" className="flex flex-col gap-4 min-w-full text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Image src={NoCourseFound} alt="" className="max-w-32 h-auto self-center"></Image>
                     <div className="flex flex-col gap-2">
-                        <h1 className="font-bold text-2xl">No courses found</h1>
-                        <p className="text-base font-normal">Start learning something new today!</p>
+                        <p className="text-xl font-normal"><span className="font-bold">No courses found.</span> Start learning something new today!</p>
                     </div>
                     <Button type="link" href="/dashboard/createnew" className="blue-button self-center">
                         <PlusIcon className="h-6 w-6 mr-2"/>
