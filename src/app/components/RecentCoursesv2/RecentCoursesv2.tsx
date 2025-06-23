@@ -61,7 +61,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                 </div>
             ) : course.length === 0 && !loading && !error ? (
                 <div data-testid="no-courses" className="flex flex-col gap-4 min-w-full text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <Image src={NoCourseFound} alt="" className="max-w-32 h-auto self-center"></Image>
+                    <Image src={NoCourseFound} alt="" className="max-w-32 h-auto self-center m-4"></Image>
                     <div className="flex flex-col gap-2">
                         <p className="text-xl font-normal"><span className="font-bold">No courses found.</span> Start learning something new today!</p>
                     </div>
