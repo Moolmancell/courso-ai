@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react"
 import { CourseCardv2 } from "../CourseCardv2/CourseCardv2";
 import { Button } from "../Button/Button";
 import { Skeleton } from "../CourseCardv2/Skeleton";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 interface course {
     id: number;
@@ -42,7 +43,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
     }, [fetchData])
 
     return (
-        <div data-testid="recent-courses">
+        <div data-testid="recent-courses" className="min-h-[360px] relative">
             {loading ? (
                 <div data-testid="loading" className="grid grid-cols-1 gap-3">
                     {
@@ -57,9 +58,15 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                     <Button onClick={fetchData}>Refresh</Button>
                 </div>
             ) : course.length === 0 && !loading && !error ? (
-                <div data-testid="no-courses">
-                    <h1>No courses found. Start learning something new today!</h1>
-                    <Button type="link" href="/dashboard/createnew">Start a Course</Button>
+                <div data-testid="no-courses" className="flex flex-col gap-4 min-w-full text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="flex flex-col gap-2">
+                        <h1 className="font-bold text-2xl">No courses found</h1>
+                        <p className="text-base font-normal">Start learning something new today!</p>
+                    </div>
+                    <Button type="link" href="/dashboard/createnew" className="blue-button self-center">
+                        <PlusIcon className="h-6 w-6 mr-2"/>
+                        <p>Start a Course</p>
+                    </Button>
                 </div>
             ) : (
                 <ul className="grid grid-cols-1 gap-3">
