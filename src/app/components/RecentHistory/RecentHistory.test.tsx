@@ -4,10 +4,10 @@ import { RecentHistory } from "./RecentHistory";
 import '@testing-library/jest-dom';
 
 const mockHistory = [
-  { title: "History 1", timestamp: "June 15, 2025 - 12:45 PM" },
-  { title: "History 2", timestamp: "June 14, 2025 - 12:50 PM" },
-  { title: "History 3", timestamp: "June 13, 2025 - 2:45 PM" },
-  { title: "History 4", timestamp: "June 12, 2025 - 6:45 PM" },
+  { title: "History 1", timestamp: "2025-06-15T12:45:00" },
+  { title: "History 2", timestamp: "2025-06-14T12:50:00" },
+  { title: "History 3", timestamp: "2025-06-13T14:45:00" },
+  { title: "History 4", timestamp: "2025-06-12T18:45:00" },
 ];
 
 describe('RecentHistory', () => {
@@ -30,7 +30,7 @@ describe('RecentHistory', () => {
     it("displays the correct titles and timestamps", async () => {
         render(<RecentHistory userID="1234"/>)
         expect(await screen.findByText("History 1")).toBeInTheDocument();
-        expect(await screen.findByText("June 12, 2025 - 6:45 PM")).toBeInTheDocument();
+        expect(await screen.findByText("June 12, 2025 at 6:45 PM")).toBeInTheDocument();
     })
     it("shows loading screen", async () => {
         render(<RecentHistory userID="1234"/>)
