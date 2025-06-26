@@ -22,10 +22,10 @@ export function RecentHistory({ userID }: { userID: string }) {
             setError(null)
 
             //remove
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            //await new Promise(resolve => setTimeout(resolve, 5000));
 
             //change to real api
-            const res = await fetch("/RecentHistory");
+            const res = await fetch("/RecentHistoryMockAPI.json");
             if (!res.ok) throw new Error("Failed to fetch data");
 
             const json = await res.json();
