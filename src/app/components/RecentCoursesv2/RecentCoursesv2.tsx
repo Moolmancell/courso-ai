@@ -24,7 +24,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
     const fetchData = useCallback(async () => {
         try {
             setLoading(true);
-            const res = await fetch(`/RecentCoursesMockApi.v2`)
+            const res = await fetch(`/RecentCoursesMockApi.v2.json`)
 
             //simulate loading times (comment or remove in production)
             //await new Promise(resolve => setTimeout(resolve, 1000));
