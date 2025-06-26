@@ -20,7 +20,7 @@ export function Button({children, type = 'button', href, onClick, className} :
         case "button":
             return (
                 <button onClick={onClick} className={className}>
-                    <p className="h-[21px]">{children}</p>
+                    <div className="h-[21px] flex flex-row gap-2 items-center">{children}</div>
                 </button>
             )
     }
