@@ -47,7 +47,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
     return (
         <div data-testid="recent-courses" className="min-h-[360px] relative">
             {loading ? (
-                <div data-testid="loading" className="grid grid-cols-1 gap-3">
+                <div data-testid="loading" className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {
                         Array.from({ length: 6 }).map((_, i) => (
                             <Skeleton id={i} key={i}/>
@@ -71,7 +71,7 @@ export function RecentCoursesv2({userID}:{userID: string}) {
                     </Button>
                 </div>
             ) : (
-                <ul className="grid grid-cols-1 gap-3">
+                <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {
                         course.map((course: course) => (
                             <li key={course.id}>
