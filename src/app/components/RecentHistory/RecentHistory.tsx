@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState, useCallback } from "react"
 import { Button } from "../Button/Button"
+import { Skeleton } from "./Skeleton"
 
 interface History {
     id?: number,
@@ -18,6 +19,10 @@ export function RecentHistory({ userID }: { userID: string }) {
         try {
             setLoading(true)
             setError(null)
+
+            //remove
+            await new Promise(resolve => setTimeout(resolve, 5000));
+
             const res = await fetch("/RecentHistoryMockAPI.json");
             if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -34,20 +39,34 @@ export function RecentHistory({ userID }: { userID: string }) {
         fetchRecentHistory();
     }, [fetchRecentHistory])
 
-    return <div className="bg-white border border-zinc-300 rounded-3xl p-4 relative">
-        <div className="w-4 h-full absolute top-0 flex flex-row justify-center items-center rounded-full py-4 z-0">
+    return <div className="bg-white border border-zinc-300 rounded-3xl p-4 relative min-h-80">
+        <div className={`w-4 h-full absolute top-0 flex flex-row justify-center items-center rounded-full py-4 z-0 ${
+            //hide line if...
+            history.length <= 0 
+            
+            ? "hidden" : ""}`}>
             <div className="bg-zinc-200 w-0.5 h-full"></div>
         </div>
         {loading ? (
-            <div data-testid="loading">loading...</div>
+            <div data-testid="loading">
+                <div className="w-4 animate-pulse h-full absolute top-0 flex flex-row justify-center items-center rounded-full py-4 z-0">
+                    <div className="bg-zinc-200 w-0.5 h-full"></div>
+                </div>
+
+                {
+                    Array.from({ length: 4 }).map((_, i) => (
+                        <Skeleton key={i}/>
+                    ))
+                }
+            </div>
         ) : error ? (
             <div data-testid="error-message">
                 Error: {error}
                 <Button onClick={fetchRecentHistory}>Refresh</Button>
             </div>
         ) : history.length === 0 ? (
-            <div data-testid="no-recent-history">No recent history yet.</div>
-        ) : (
+            <div data-testid="no-recent-history" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">No recent history yet.</div>
+        ): (
             <ul className="relative z-[5] flex flex-col gap-2">
                 {history.map((history: History, idx) => (
                     <li data-testid="history" key={history.id ?? idx} className="flex flex-row gap-4 mb-6">
