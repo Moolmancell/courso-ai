@@ -29,7 +29,7 @@ export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) 
                 <section className="px-4 mb-12 md:px-8 lg:px-0">
                     <div className="flex flex-row justify-between items-center my-4">
                         <h1 className="font-medium text-2xl">History</h1>
-                        <Link href={"/dashboard/history"} className="text-sm font-semibold underline">See all courses</Link>
+                        <Link href={"/dashboard/history"} className="text-sm font-semibold underline">See all history</Link>
                     </div>
 
                     <div>
