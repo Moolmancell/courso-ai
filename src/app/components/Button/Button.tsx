@@ -12,7 +12,7 @@ export function Button({children, type = 'button', href, onClick, className} :
                 throw new Error("`href` must be provided when `type` is 'link'");
             }
             return (
-                <Link href={href} className={className}>
+                <Link href={href} className={`${className} default-button`}>
                     {children}
                 </Link>
             )
