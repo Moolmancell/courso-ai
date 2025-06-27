@@ -12,6 +12,7 @@ import { Upgrade } from "../Upgrade Plan/Upgrade";
 import { ClockIcon } from "@heroicons/react/24/outline";
 import { ChartBarSquareIcon } from "@heroicons/react/24/outline";
 import { BellIcon } from "@heroicons/react/24/outline";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
 
 interface NavLinkItem { // Renamed to avoid conflict with the component
   name: string
@@ -33,13 +34,14 @@ export function NavigationDashboard(): React.ReactElement {
     <nav className="relative"> {/* Add relative to the nav for absolute children */}
         {/* Header */}
         <div className="z-10 p-4 flex flex-row backdrop-blur-sm justify-between items-center md:px-8 bg-zinc-100/65 fixed top-0 w-full">
-          <div className="left-side">
-            <button className="hamburger cursor-pointer" onClick={() => setOpen(true)}>
+          <div className="left-side flex flex-row items-center gap-4">
+            <button className="hamburger cursor-pointer xl:hidden" onClick={() => setOpen(true)}>
               <Bars2Icon className="size-8" />
             </button>
+            <Breadcrumbs></Breadcrumbs>
           </div>
-
-          <div className="right-side flex flex-row gap-4">
+          
+          <div className="right-side flex flex-row justify-end gap-4">
             <button>
               <BellIcon className="size-8"/>
             </button>
