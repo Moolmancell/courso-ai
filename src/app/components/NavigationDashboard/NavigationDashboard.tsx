@@ -33,7 +33,7 @@ export function NavigationDashboard(): React.ReactElement {
   return (
     <nav className="relative"> {/* Add relative to the nav for absolute children */}
         {/* Header */}
-        <div className="z-10 p-4 flex flex-row backdrop-blur-sm justify-between items-center md:px-8 bg-zinc-100/65 fixed top-0 w-full">
+        <div className="z-10 p-4 flex flex-row backdrop-blur-sm justify-between items-center md:px-8 xl:pl-80 bg-zinc-100/65 fixed top-0 w-full">
           <div className="left-side flex flex-row items-center gap-4">
             <button className="hamburger cursor-pointer xl:hidden" onClick={() => setOpen(true)}>
               <Bars2Icon className="size-8" />
