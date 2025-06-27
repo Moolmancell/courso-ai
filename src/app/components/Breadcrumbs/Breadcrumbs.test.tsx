@@ -1,50 +1,43 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
-import "@testing-library/jest-dom"
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import "@testing-library/jest-dom";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { usePathname } from "next/navigation";
 
-const originalLocation = window.location;
+// Mock the module and usePathname function
+vi.mock("next/navigation", async () => {
+  const actual = await vi.importActual<typeof import("next/navigation")>("next/navigation");
+  return {
+    ...actual,
+    usePathname: vi.fn(),
+  };
+});
 
-describe('Breadcrumbs', () => {
-    beforeEach(() => {
-        // Restore the original window.location before each test
-        Object.defineProperty(window, 'location', {
-            configurable: true,
-            value: originalLocation,
-        });
-    });
+// Create a properly typed mocked version of usePathname
+const mockedUsePathname = vi.mocked(usePathname);
 
-    it('Breadcrumbs exists', () => {
-        Object.defineProperty(window, 'location', {
-            configurable: true,
-            value: { pathname: '/dashboard' },
-        });
+describe("Breadcrumbs", () => {
+  beforeEach(() => {
+    mockedUsePathname.mockReset();
+  });
 
-        render(<Breadcrumbs/>)
-        expect(screen.getByTestId('breadcrumbs')).toBeInTheDocument();
-    })
+  it("Breadcrumbs exists", () => {
+    mockedUsePathname.mockReturnValue("/dashboard");
+    render(<Breadcrumbs />);
+    expect(screen.getByTestId("breadcrumbs")).toBeInTheDocument();
+  });
 
-    it('renders the right links', () => {
-        Object.defineProperty(window, 'location', {
-            configurable: true,
-            value: { pathname: '/dashboard' },
-        });
+  it("renders the right links", () => {
+    mockedUsePathname.mockReturnValue("/dashboard");
+    render(<Breadcrumbs />);
+    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+    expect(screen.queryByText("Courses")).not.toBeInTheDocument();
+  });
 
-        render(<Breadcrumbs/>)
-        expect(screen.getByTestId('breadcrumbs')).toBeInTheDocument();
-        expect(screen.getByText('Dashboard')).toBeInTheDocument();
-        expect(screen.queryByText('Courses')).not.toBeInTheDocument();
-    })
-
-    it('renders the right links (part 2)', () => {
-        Object.defineProperty(window, 'location', {
-            configurable: true,
-            value: { pathname: '/dashboard/courses' },
-        });
-
-        render(<Breadcrumbs/>)
-        expect(screen.getByTestId('breadcrumbs')).toBeInTheDocument();
-        expect(screen.getByText('Dashboard')).toBeInTheDocument();
-        expect(screen.getByText('Courses')).toBeInTheDocument();
-    })
-})
+  it("renders the right links (part 2)", () => {
+    mockedUsePathname.mockReturnValue("/dashboard/courses");
+    render(<Breadcrumbs />);
+    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+    expect(screen.getByText("Courses")).toBeInTheDocument();
+  });
+});
