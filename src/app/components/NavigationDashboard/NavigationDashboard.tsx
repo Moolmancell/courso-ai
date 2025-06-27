@@ -43,7 +43,7 @@ export function NavigationDashboard(): React.ReactElement {
           
           <div className="right-side flex flex-row justify-end gap-4">
             <button>
-              <BellIcon className="size-8"/>
+              <BellIcon className="size-7"/>
             </button>
             <button className="profile-button">
             {/* Needs to be dynamic */}
