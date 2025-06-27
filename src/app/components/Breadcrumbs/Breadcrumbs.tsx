@@ -37,24 +37,24 @@ export function Breadcrumbs() {
                                                 className="text-base text-ellipsis flex flex-row items-center gap-2 hover:text-blue-500"
                                             >
                                                 <HomeIcon className="size-5"></HomeIcon>
-                                                <span className="hidden sm:block">{displaySegment}</span>
+                                                <span className="hidden sm:block truncate">{displaySegment}</span>
                                             </Link>
                                         ) : (
                                             <div className="flex flex-row items-center gap-2">
                                                 <HomeIcon className="size-5"></HomeIcon>
-                                                <span className="font-semibold text-base hidden sm:block">
+                                                <span className="font-semibold text-base hidden sm:block truncate">
                                                     {displaySegment}
                                                 </span>
                                             </div>
                                         )
                                 ) : isLastSegment ? (
-                                    <span className="font-semibold text-base ">
+                                    <span className="font-semibold text-base truncate w-[min(100%,15vw)] sm:w-full">
                                         {displaySegment}
                                     </span>
                                 ) : (
                                     <Link
                                         href={currentPath}
-                                        className="hover:text-blue-500 text-base text-ellipsis"
+                                        className="hover:text-blue-500 text-base text-ellipsis truncate w-3/5 sm:w-full"
                                     >
                                         {displaySegment}
                                     </Link>
