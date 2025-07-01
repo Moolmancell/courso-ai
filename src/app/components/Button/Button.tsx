@@ -4,8 +4,8 @@ import { MouseEventHandler } from "react";
 type typeButton = 'link'| 'button';
 type buttonStyles = 'default-button' | 'blue-button';
 
-export function Button({children, type = 'button', href, onClick, className, ...props} : 
-    {children?: React.ReactNode, type?: typeButton, href?: string, onClick?: MouseEventHandler, className?: string}) {
+export function Button({children, type = 'button', href, onClick, className, disabled, ...props} : 
+    {children?: React.ReactNode, type?: typeButton, href?: string, onClick?: MouseEventHandler, className?: string, disabled?: boolean}) {
     switch(type) {
         case "link":
             if (!href) {
@@ -19,7 +19,7 @@ export function Button({children, type = 'button', href, onClick, className, ...
             break;
         case "button":
             return (
-                <button onClick={onClick} className={`${className} default-button`} {...props}>
+                <button onClick={onClick} className={`${className} default-button`} disabled={disabled} {...props}>
                     <div className="h-[21px] flex flex-row gap-2 items-center">{children}</div>
                 </button>
             )
