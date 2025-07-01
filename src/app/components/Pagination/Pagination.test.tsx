@@ -46,7 +46,7 @@ describe('Pagination', () => {
         expect(screen.getByRole('button', { name: '9' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '10' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '10' })).toBeDisabled();
-        expect(screen.getByTestId('... left')).toBeInTheDocument();
+        expect(screen.getByTestId('ellipsis-left')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
     })
@@ -62,8 +62,8 @@ describe('Pagination', () => {
         expect(screen.getByRole('button', { name: '5' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '5' })).toBeDisabled();
         expect(screen.getByRole('button', { name: '6' })).toBeInTheDocument();
-        expect(screen.getByTestId('... left')).toBeInTheDocument();
-        expect(screen.getByTestId('... right')).toBeInTheDocument();
+        expect(screen.getByTestId('ellipsis-left')).toBeInTheDocument();
+        expect(screen.getByTestId('ellipsis-right')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
     })
     it('renders correctly when total pages are below 2', () => {
@@ -78,8 +78,8 @@ describe('Pagination', () => {
       expect(screen.getByRole('button', { name: '1' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: '2' })).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: '3' })).not.toBeInTheDocument();
-      expect(screen.queryByTestId('... left')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('... right')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('ellipsis-left')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('ellipsis-right')).not.toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
     })
     it('clicks on a page number button and updates the page', () => {
