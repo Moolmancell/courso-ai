@@ -47,6 +47,8 @@ export function Courses({ userID }: { userID: string }) {
             //mock is used here for demo purposes
             const res = await fetch(`/api/courses?page=${currentPage}&q=${debouncedSearch}`)
 
+            // const res = await fetch(`/api/courses?user=${userID}&page=${currentPage}&q=${debouncedSearch}`) <--real api
+
             //simulate loading times (comment or remove in production)
             //await new Promise(resolve => setTimeout(resolve, 1000));
 
