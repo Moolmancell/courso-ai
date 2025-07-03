@@ -1,7 +1,8 @@
 import { Button } from "@/app/components/Button/Button"
 import { PlusIcon } from "@heroicons/react/24/outline"
+import { Courses } from "@/app/components/Courses/Courses"
 
-export default function Courses() {
+export default function CoursesPage() {
     return (
         <div>
             <section className="px-4 mb-12 md:px-8">
@@ -12,6 +13,7 @@ export default function Courses() {
                         <span>Add Course</span>
                     </Button>
                 </div>
+                <Courses userID="1234" />
             </section>
         </div>
     )

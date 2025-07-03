@@ -14,10 +14,10 @@ describe('Course Page', () => {
     expect(screen.getByRole('button', { name: /Add Course/i })).toBeInTheDocument();
   });
 
-  it("renders the CourseList", () => {
+  it("renders the Courses", () => {
     render(<CoursesPage />);
     // This test assumes that the Courses component renders a list or container
     // You might need a more specific selector depending on your implementation
-    expect(screen.getByTestId('courses-list')).toBeInTheDocument(); // Assuming a data-testid="courses-list" on the container
+    expect(screen.getByTestId('courses')).toBeInTheDocument(); // Assuming a data-testid="courses-list" on the container
   });
 });
