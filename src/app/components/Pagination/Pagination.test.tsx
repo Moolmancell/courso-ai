@@ -11,12 +11,12 @@ describe('Pagination', () => {
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />)
     
         expect(screen.getByTestId("pagination")).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '1' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '1' })).toBeDisabled();
         expect(screen.getByRole('button', { name: '2' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '3' })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
     })
 
     it('renders correctly when on the first page', () => {
@@ -26,13 +26,13 @@ describe('Pagination', () => {
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />)
     
         expect(screen.getByTestId("pagination")).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled();
+        expect(screen.getByRole('button', { name: '<<' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '<<' })).toBeDisabled();
         expect(screen.getByRole('button', { name: '1' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '1' })).toBeDisabled();
         expect(screen.getByRole('button', { name: '2' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '3' })).toBeInTheDocument();    
-        expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
     })
     it('renders correctly when on the last page', () => {
         const setCurrentPage = vi.fn();
@@ -41,14 +41,14 @@ describe('Pagination', () => {
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />)
     
         expect(screen.getByTestId("pagination")).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '<<' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '8' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '9' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '10' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '10' })).toBeDisabled();
         expect(screen.getByTestId('ellipsis-left')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
+        expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '>>' })).toBeDisabled();
     })
     it('renders correctly when on the middle page', () => {
         const setCurrentPage = () => null;
@@ -57,14 +57,14 @@ describe('Pagination', () => {
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />)
     
         expect(screen.getByTestId("pagination")).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '<<' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '4' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '5' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: '5' })).toBeDisabled();
         expect(screen.getByRole('button', { name: '6' })).toBeInTheDocument();
         expect(screen.getByTestId('ellipsis-left')).toBeInTheDocument();
         expect(screen.getByTestId('ellipsis-right')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
     })
     it('renders correctly when total pages are below 2', () => {
       const setCurrentPage = () => null;
@@ -73,14 +73,14 @@ describe('Pagination', () => {
       render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />)
   
       expect(screen.getByTestId("pagination")).toBeInTheDocument()
-      expect(screen.getByRole('button', { name: 'Previous' })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: 'Previous' })).toBeDisabled();
+      expect(screen.getByRole('button', { name: '<<' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '<<' })).toBeDisabled();
       expect(screen.getByRole('button', { name: '1' })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: '2' })).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: '3' })).not.toBeInTheDocument();
       expect(screen.queryByTestId('ellipsis-left')).not.toBeInTheDocument();
       expect(screen.queryByTestId('ellipsis-right')).not.toBeInTheDocument();
-      expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '>>' })).toBeInTheDocument();
     })
     it('clicks on a page number button and updates the page', () => {
         const setCurrentPage = vi.fn();
@@ -94,49 +94,49 @@ describe('Pagination', () => {
         expect(setCurrentPage).toHaveBeenCalledWith(3);
       });
     
-      it('clicks on the Next button and updates the page', () => {
+      it('clicks on the >> button and updates the page', () => {
         const setCurrentPage = vi.fn();
         const currentPage = 1;
         const totalPages = 10;
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />);
     
-        const nextButton = screen.getByRole('button', { name: 'Next' });
+        const nextButton = screen.getByRole('button', { name: '>>' });
         nextButton.click();
     
         expect(setCurrentPage).toHaveBeenCalledWith(2);
       });
     
-      it('clicks on the Previous button and updates the page', () => {
+      it('clicks on the << button and updates the page', () => {
         const setCurrentPage = vi.fn();
         const currentPage = 5;
         const totalPages = 10;
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />);
     
-        const previousButton = screen.getByRole('button', { name: 'Previous' });
+        const previousButton = screen.getByRole('button', { name: '<<' });
         previousButton.click();
     
         expect(setCurrentPage).toHaveBeenCalledWith(4);
       });
     
-      it('does not call setCurrentPage when clicking disabled Previous button', () => {
+      it('does not call setCurrentPage when clicking disabled << button', () => {
         const setCurrentPage = vi.fn();
         const currentPage = 1;
         const totalPages = 10;
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />);
     
-        const previousButton = screen.getByRole('button', { name: 'Previous' });
+        const previousButton = screen.getByRole('button', { name: '<<' });
         previousButton.click();
     
         expect(setCurrentPage).not.toHaveBeenCalled();
       });
     
-      it('does not call setCurrentPage when clicking disabled Next button', () => {
+      it('does not call setCurrentPage when clicking disabled >> button', () => {
         const setCurrentPage = vi.fn();
         const currentPage = 10;
         const totalPages = 10;
         render(<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />);
     
-        const nextButton = screen.getByRole('button', { name: 'Next' });
+        const nextButton = screen.getByRole('button', { name: '>>' });
         nextButton.click();
     
         expect(setCurrentPage).not.toHaveBeenCalled();

@@ -8,7 +8,7 @@ interface PaginationProps {
 
 export function Pagination({ currentPage, totalPages, setCurrentPage }: PaginationProps) {
   return (
-    <div data-testid="pagination" className="flex items-center gap-2">
+    <div data-testid="pagination" className="flex items-center gap-2 m-auto">
       {/* Previous Button */}
       <Button
         disabled={currentPage <= 1}
@@ -16,18 +16,18 @@ export function Pagination({ currentPage, totalPages, setCurrentPage }: Paginati
           if (currentPage > 1) setCurrentPage(currentPage - 1);
         }}
       >
-        Previous
+        <span className="truncate">{"<<"}</span>
       </Button>
 
       {/* Left Ellipsis */}
       {currentPage > 2 && (
-        <Button disabled data-testid="ellipsis-left">...</Button>
+        <span data-testid="ellipsis-left">...</span>
       )}
 
       {/* Page Numbers */}
       {currentPage === 1 ? (
         <>
-          <Button disabled data-testid="page-current">{currentPage}</Button>
+          <Button disabled data-testid="page-current" className="blue-button">{currentPage}</Button>
           {currentPage + 1 <= totalPages && (
             <Button onClick={() => setCurrentPage(currentPage + 1)} data-testid="page-next-1">{currentPage + 1}</Button>
           )}
@@ -43,14 +43,14 @@ export function Pagination({ currentPage, totalPages, setCurrentPage }: Paginati
           {currentPage - 1 > 0 && (
             <Button onClick={() => setCurrentPage(currentPage - 1)} data-testid="page-prev-1">{currentPage - 1}</Button>
           )}
-          <Button disabled data-testid="page-current">{currentPage}</Button>
+          <Button disabled data-testid="page-current" className="blue-button">{currentPage}</Button>
         </>
       ) : (
         <>
           {currentPage - 1 > 0 && (
             <Button onClick={() => setCurrentPage(currentPage - 1)} data-testid="page-prev">{currentPage - 1}</Button>
           )}
-          <Button disabled data-testid="page-current">{currentPage}</Button>
+          <Button disabled data-testid="page-current" className="blue-button">{currentPage}</Button>
           {currentPage + 1 <= totalPages && (
             <Button onClick={() => setCurrentPage(currentPage + 1)} data-testid="page-next">{currentPage + 1}</Button>
           )}
@@ -59,7 +59,7 @@ export function Pagination({ currentPage, totalPages, setCurrentPage }: Paginati
 
       {/* Right Ellipsis */}
       {currentPage < totalPages - 1 && (
-        <Button disabled data-testid="ellipsis-right">...</Button>
+        <span data-testid="ellipsis-right">...</span>
       )}
 
       {/* Next Button */}
@@ -69,7 +69,7 @@ export function Pagination({ currentPage, totalPages, setCurrentPage }: Paginati
           if (currentPage < totalPages) setCurrentPage(currentPage + 1);
         }}
       >
-        Next
+        <span className="truncate">{">>"}</span>
       </Button>
     </div>
   )
