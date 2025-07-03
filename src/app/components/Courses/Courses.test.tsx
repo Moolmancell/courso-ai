@@ -1,11 +1,12 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, beforeEach, vi } from "vitest";
 import { Courses } from "./Courses";
 import "@testing-library/jest-dom"
 
+//unit tests
 describe("Courses", () => {
     beforeEach(() => {
-        const mockCourses = Array.from({ length: 24 }, (_, i) => ({
+        const mockCourses = Array.from({ length: 12 }, (_, i) => ({
             id: i + 1,
             lessons: Math.floor(Math.random() * 20) + 1,
             title: `Course Title ${i + 1}`,
@@ -33,6 +34,14 @@ describe("Courses", () => {
     it("search bar is rendered", () => {
         render(<Courses userID="1234"/>)
         expect(screen.getByTestId("search-bar")).toBeInTheDocument();
+    })
+    it('search bar is working', async () => {
+        render(<Courses userID="1234"/>)
+        const searchInput = screen.getByTestId("search-bar");
+        fireEvent.change(searchInput, { target: { value: "React" } });
+        await waitFor(() => {
+            expect(fetch).toHaveBeenCalledWith("/api/courses?page=1&q=React");
+        });
     })
     it("render 12 course cards", async () => {
         render(<Courses userID="1234"/>)
