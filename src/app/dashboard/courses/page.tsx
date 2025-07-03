@@ -4,7 +4,7 @@ import { Courses } from "@/app/components/Courses/Courses"
 
 export default function CoursesPage() {
     return (
-        <div>
+        <div className="max-w-7xl m-auto">
             <section className="px-4 mb-12 md:px-8">
                 <div className="flex flex-row items-center justify-between">
                     <h1 className="font-bold text-2xl my-4">Courses</h1>
