@@ -3,7 +3,7 @@
         flex flex-row justify-center 
         px-4 py-2 h-[37px] items-center
         border border-zinc-300 rounded-3xl
-        hover:bg-zinc-100
+        hover:bg-zinc-100 bg-white
 }
 
 .blue-button {
