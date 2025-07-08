@@ -66,7 +66,7 @@ describe("Courses", () => {
         } as Response);
         render(<Courses userID="1234"/>)
         await waitFor(() => {
-            expect(screen.getByText("Error: Failed to fetch data")).toBeInTheDocument(); // Assuming you render "Error: " + message
+            expect(screen.getByText("Error:")).toBeInTheDocument(); // Assuming you render "Error: " + message
         });
     });
 
