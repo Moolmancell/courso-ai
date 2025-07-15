@@ -1,5 +1,16 @@
-export function Page() {
+'use client'
+import { use } from 'react'
+
+export default function Page({
+    params,
+}: {
+    params: Promise<{ courseID: string }>
+}) {
+    const { courseID } = use(params)
+
     return (
-        <h1>course page</h1>
+        <div>
+            {courseID}
+        </div>
     )
 }
