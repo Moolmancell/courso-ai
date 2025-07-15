@@ -4,6 +4,7 @@
         px-4 py-2 h-[37px] items-center
         border border-zinc-300 rounded-3xl
         hover:bg-zinc-100 bg-white cursor-pointer
+        disabled:cursor-not-allowed
 }
 
 .blue-button {
@@ -12,5 +13,5 @@
         flex flex-row justify-center 
         px-4 py-2 h-[37px] items-center
         rounded-3xl hover:bg-blue-100
-        border-none cursor-pointer
+        border-none cursor-pointer disabled:cursor-not-allowed
 }
