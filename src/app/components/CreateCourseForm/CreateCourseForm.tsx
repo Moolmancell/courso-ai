@@ -69,7 +69,10 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
             <form onSubmit={handleSubmit} className="bg-white border border-zinc-300 rounded-3xl p-4 flex flex-col gap-8 dialog-popout">
                 <div className="flex flex-row justify-between">
                     <h1 className="font-bold text-xl">Create Course</h1>
-                    <button type="button" className="cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" onClick={() => onCancel()} data-testid="x-button" disabled={status === 'submitting'}>
+                    <button type="button" className="cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed" 
+                        onClick={() => onCancel()} 
+                        data-testid="x-button" 
+                        disabled={status === 'submitting' || status === 'success'}>
                         <XMarkIcon className="size-6" />
                     </button>
                 </div>
@@ -81,7 +84,7 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
                                 placeholder-zinc-700 text-sm font-normal w-full"
                             required
                             onChange={(e) => setFormData({ topic: e.target.value })}
-                            disabled={status === 'submitting'}
+                            disabled={status === 'submitting' || status === 'success'}
                         />
                     </div>
                     <div className="bg-zinc-100 rounded-3xl px-3 py-4 border border-zinc-300 flex flex-row gap-4 items-center">
@@ -115,8 +118,8 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
                     }
                 </div>
                 <div className="flex flex-row justify-end gap-2">
-                    <button type="button" className="default-button" onClick={() => onCancel()} disabled={status === 'submitting'}>Cancel</button>
-                    <button type="submit" className="blue-button flex items-center gap-3" disabled={status === 'submitting'} data-testid="create-course">
+                    <button type="button" className="default-button" onClick={() => onCancel()} disabled={status === 'submitting' || status === 'success'}>Cancel</button>
+                    <button type="submit" className="blue-button flex items-center gap-3" disabled={status === 'submitting' || status === 'success'} data-testid="create-course">
                         <PlusIcon className="size-6"></PlusIcon>
                         <span>Create Course</span>
                     </button>
