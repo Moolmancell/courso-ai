@@ -5,9 +5,11 @@ import { PlusIcon } from "@heroicons/react/20/solid"
 import { InformationCircleIcon } from "@heroicons/react/24/outline"
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline"
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
 
+    const router = useRouter();
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'response'>('idle');
     const [formData, setFormData] = useState({ topic: '' });
     const [error, setError] = useState('');
@@ -42,6 +44,9 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
                 setStatus('success');
                 setFormData({ topic: '' });
                 // Redirect to course, or handle accordingly
+                setTimeout(() => {
+                    router.push(`/course/${data.courseID}`);
+                }, 1000)
             } else if (data.responseMessage) {
                 setStatus('response');
                 setError(data.responseMessage);
