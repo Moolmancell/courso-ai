@@ -1,0 +1,5 @@
+export function Page() {
+    return (
+        <h1>course page</h1>
+    )
+}
