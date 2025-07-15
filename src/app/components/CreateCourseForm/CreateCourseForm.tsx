@@ -45,7 +45,7 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
                 setFormData({ topic: '' });
                 // Redirect to course, or handle accordingly
                 setTimeout(() => {
-                    router.push(`/course/${data.courseID}`);
+                    router.push(`/dashboard/courses/${data.courseID}`);
                 }, 1000)
             } else if (data.responseMessage) {
                 setStatus('response');
