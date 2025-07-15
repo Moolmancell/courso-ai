@@ -40,4 +40,8 @@ describe("Breadcrumbs", () => {
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
     expect(screen.getByText("Courses")).toBeInTheDocument();
   });
+
+  it.todo('if the width size too short it shows a dropdown')
+  it.todo('the courseID fetches the course name and use it in the breadcrumb')
+  it.todo('the lessonID fetches the lesson name and use it in the breadcrumb')
 });
