@@ -1,9 +1,22 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import "@testing-library/jest-dom"; // Not needed with Vitest
 import CoursesPage from "./page"; // Assuming the component is the default export
 
 describe('Course Page', () => {
+  beforeEach(async () => {
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: vi.fn(),
+        replace: vi.fn(),
+        refresh: vi.fn(),
+        back: vi.fn(),
+        forward: vi.fn(),
+        prefetch: vi.fn(),
+      }),
+    }));
+  })
+
   it("renders the Course Title", () => {
     render(<CoursesPage />);
     expect(screen.getByRole('heading', { name: /Courses/i })).toBeInTheDocument();

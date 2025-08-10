@@ -1,10 +1,22 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CreateCourseForm } from './CreateCourseForm';
-import { describe, expect, it, test, vi } from 'vitest';
+import { describe, expect, it, test, vi, beforeEach } from 'vitest';
 import "@testing-library/jest-dom"
 
 describe('CreateCourseForm', () => {
+  beforeEach(async () => {
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: vi.fn(),
+        replace: vi.fn(),
+        refresh: vi.fn(),
+        back: vi.fn(),
+        forward: vi.fn(),
+        prefetch: vi.fn(),
+      }),
+    }));
+  })
   const mockOnCancel = vi.fn();
 
   it('renders the form with all elements', () => {
