@@ -81,6 +81,7 @@ export function NavigationDashboard(): React.ReactElement {
                     name={obj.name}
                     icon={obj.icon}
                     onClick={() => setOpen(false)}
+                    homeUrl="/dashboard"
                     />
                 </li>)
             }
@@ -118,6 +119,7 @@ export function NavigationDashboard(): React.ReactElement {
                     name={obj.name}
                     icon={obj.icon}
                     onClick={() => setOpen(false)}
+                    homeUrl="/dashboard"
                     />
                 </li>)
             }

@@ -4,11 +4,23 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MouseEventHandler } from "react";
 
-export function NavLink({href, name, icon: Icon, onClick = () => null} : 
-    {href: string, name: string, icon: React.ElementType, onClick: MouseEventHandler}) {
+export function NavLink({href, name, icon: Icon, onClick = () => null, homeUrl} : 
+    {href: string, name: string, icon: React.ElementType, onClick: MouseEventHandler, homeUrl?: string}) {
 
     const pathname = usePathname(); 
-    const isActive = pathname === href; 
+    let isActive = false;
+
+    console.log(pathname)
+
+    if (homeUrl) {
+      if (homeUrl === pathname && homeUrl === href) {
+        isActive = true;
+      } else {
+        isActive = pathname.includes(href) && homeUrl !== href;
+      }
+    } else {
+      isActive = pathname === href;
+    }
 
     return (
         <Link 
