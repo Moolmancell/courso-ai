@@ -8,7 +8,7 @@ const mockCourses = Array.from({ length: 100 }, (_, i) => ({
   lessons: Math.floor(Math.random() * 20) + 1,
   title: `Course Title ${i + 1}`,
   progress: Math.floor(Math.random() * 100),
-  courseLink: `/courses/course-${i + 1}`
+  courseLink: `/dashboard/courses/course-${i + 1}`
 }));
 
 export async function GET(req: NextRequest) {
