@@ -10,8 +10,6 @@ export function NavLink({href, name, icon: Icon, onClick = () => null, homeUrl} 
     const pathname = usePathname(); 
     let isActive = false;
 
-    console.log(pathname)
-
     if (homeUrl) {
       if (homeUrl === pathname && homeUrl === href) {
         isActive = true;
