@@ -40,7 +40,7 @@ describe("Courses", () => {
         const searchInput = screen.getByTestId("search-bar");
         fireEvent.change(searchInput, { target: { value: "React" } });
         await waitFor(() => {
-            expect(fetch).toHaveBeenCalledWith("/api/courses?page=1&q=React");
+            expect(fetch).toHaveBeenCalledWith("/api/tests/courses?page=1&q=React");
         });
     })
     it("render 12 course cards", async () => {
