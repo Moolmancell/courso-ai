@@ -32,7 +32,7 @@ export function CreateCourseForm({ onCancel }: { onCancel: Function }) {
         
         try {
             //uses mock api call
-            const res = await fetch('/api/create-course', {
+            const res = await fetch('/api/tests/create-course', {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {

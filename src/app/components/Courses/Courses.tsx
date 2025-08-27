@@ -45,7 +45,7 @@ export function Courses({ userID }: { userID: string }) {
             }*/
            
             //mock is used here for demo purposes
-            const res = await fetch(`/api/courses?page=${currentPage}&q=${debouncedSearch}`)
+            const res = await fetch(`/api/tests/courses?page=${currentPage}&q=${debouncedSearch}`)
 
             // const res = await fetch(`/api/courses?user=${userID}&page=${currentPage}&q=${debouncedSearch}`) <--real api
 
