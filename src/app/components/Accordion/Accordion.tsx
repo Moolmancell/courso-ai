@@ -14,14 +14,14 @@ export function Accordion({ title, children, hasSubtitle, subtitle }: AccordionP
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div className="group">
       {/* Accordion header */}
       <button
         data-testid="accordion"
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex flex-row justify-between px-4 py-3 w-full"
       >
-        <div className="flex flex-col gap-2 items-start group">
+        <div className="flex flex-col gap-2 items-start">
           <span className="text-base font-semibold group-hover:underline">{title}</span>
           {hasSubtitle && <span className="text-sm text-zinc-700">{subtitle}</span>}
         </div>
