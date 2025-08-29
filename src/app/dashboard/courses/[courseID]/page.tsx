@@ -103,6 +103,7 @@ export default function Page() {
         <PlayIcon className="size-6 w-6 h-6"></PlayIcon>
         <span>{courseDetails.progress === 0 ? "Start Course" : "Continue"}</span>
       </Button>
+      //make this button link to the next incomplete lesson in the course
 
     </div>
   );
