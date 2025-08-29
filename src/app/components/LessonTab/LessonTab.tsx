@@ -2,7 +2,8 @@ import React from 'react';
 import { BookOpenIcon } from '@heroicons/react/24/outline';
 import { CheckCircleIcon as CheckCircleSolid } from '@heroicons/react/24/solid';
 import { CheckCircleIcon as CheckCircleOutline } from '@heroicons/react/24/outline';
-export default function LessonTab({children, status}: {children?: React.ReactNode, status: 'completed' | 'incomplete'}) {
+
+export function LessonTab({children, status}: {children?: React.ReactNode, status: 'completed' | 'incomplete'}) {
     return <div data-testid="lessontab">
         <div>
             <BookOpenIcon className="h-5 w-5 text-zinc-500" />
