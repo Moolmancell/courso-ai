@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image"
 import BookBlueCircle from '@/app/icons/BookBlueCircle.svg'
 import { PlayIcon } from "@heroicons/react/24/outline";
+import { LessonTab } from "@/app/components/LessonTab/LessonTab";
 
 type Lesson = {
   id: string;
@@ -92,7 +93,7 @@ export default function Page() {
         {courseDetails.modules.map((module, index) => (
           <Accordion key={module.id} title={module.title} hasSubtitle={true} subtitle={`Module ${index + 1}`} data-testid="accordion">
             {module.lessons.map((lesson) => (
-              <p key={lesson.id}>{lesson.title}</p>
+              <LessonTab key={lesson.id} lessonID={lesson.id} status={lesson.completed ? 'completed' : 'incomplete'}>{lesson.title}</LessonTab>
             ))}
           </Accordion>
         ))}
