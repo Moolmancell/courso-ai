@@ -94,10 +94,18 @@ describe('[courseID]', () => {
       
         expect(await screen.findByRole('link', { name: 'Start Course' })).toBeInTheDocument();
     });
-    it.todo('loading works', () => {
+    it.todo('loading works', async () => {
         render(<Page />);
+        expect(await screen.findByTestId('loading')).toBeInTheDocument();
     })
-    it.todo('show error if something goes wrong or course doesnt exists', () => {
+    it.todo('show error if something goes wrong or course doesnt exists', async () => {
+        (global.fetch as any) = vi.fn(() =>
+          Promise.resolve({
+            ok: false,
+          } as Response)
+        );  
 
+        render(<Page />);
+        expect(await screen.findByText('Error loading course')).toBeInTheDocument();
     })
 })
