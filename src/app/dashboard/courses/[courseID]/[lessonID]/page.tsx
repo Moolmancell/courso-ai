@@ -21,7 +21,7 @@ interface Lesson {
     content: LessonContent[];
 }
 
-export function Page() {
+export default function Page() {
     const params = useParams<{ courseID: string; lessonID: string }>();
     const [lesson, setLesson] = useState<Lesson | null>(null);
     const [loading, setLoading] = useState<boolean>(false);

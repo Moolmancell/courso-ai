@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
 import "@testing-library/jest-dom";
-import { Page } from "./page";
+import Page from "./page";
 
 vi.mock("next/navigation", () => ({
   useParams: () => ({ courseID: "course-1", lessonID: "lesson-1" }),
