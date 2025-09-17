@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/app/components/Button/Button";
