@@ -47,7 +47,7 @@ export default function Page() {
     try {
       setLoading(true);
       setError('');
-      const res = await fetch(`/api/tests/course-sample`); // test route
+      const res = await fetch(`/api/tests/courses/${courseID}`); // test route
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.status}`);
       }
