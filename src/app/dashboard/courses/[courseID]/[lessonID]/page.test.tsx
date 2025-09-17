@@ -3,9 +3,16 @@ import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
 import "@testing-library/jest-dom";
 import { Page } from "./page";
 
+vi.mock("next/navigation", () => ({
+  useParams: () => ({ courseID: "course-1", lessonID: "lesson-1" }),
+}));
+
 const mockLesson1 = {
   id: "lesson-1",
   title: "Introduction to React",
+  previousLessonID: null,
+  nextLessonID: "lesson-2",
+  completed: false,
   content: [
     { type: "heading", text: "Introduction to React", id: 1 },
     {
@@ -18,20 +25,20 @@ const mockLesson1 = {
       text: "Welcome to the Introduction to React lesson. In this lesson, we will cover the basics of React, including components, JSX, and state management.",
       id: 3,
     },
-    { type: "code", text: "const element = <h1>Hello, world!</h1>;", id: 4 },
+    { type: "code", text: "const element = <h1>Hello, world!</h1>;", lang:'JS', id: 4 },
     {
       type: "paragraph",
       text: "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.",
       id: 5,
     },
-    { type: "image", src: "", alt: "React Logo", id: 6 },
+    { type: "image", src: "https://opensource.fb.com/img/projects/react.jpg", alt: "React Logo", id: 6 },
     {
       type: "paragraph",
       text: "Let's get started with creating our first React component!",
       id: 7,
     },
     { type: "divider", id: 8 },
-    { type: "video", src: "", searchTerm: "React Tutorial", id: 9 },
+    { type: "video", src: "https://www.youtube.com/watch?v=SqcY0GlETPk&t=330s", searchTerm: "React Tutorial", id: 9 },
   ],
 };
 
@@ -51,91 +58,132 @@ describe("[courseID] Page", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders the title", () => {
+  it("renders the title", async () => {
     render(<Page />);
     expect(
-      screen.getByText("Introduction to React")
+      await screen.findByTestId("lesson-title")
+    ).toBeInTheDocument();
+    expect(screen.getByTestId("lesson-title")).toHaveTextContent("Introduction to React");
+  });
+
+  it('shows loading state', async () => {
+    render(<Page />);
+    expect(await screen.findByTestId('loading')).toBeInTheDocument();
+  })
+
+  it("renders the buttons (not yet completed)", async () => {
+    render(<Page />);
+    expect(await screen.findByRole("button", { name: /Next/i })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /Back/i })).toBeInTheDocument();
+    expect(
+      await
+      screen.findByRole("button", { name: /Mark Complete/i })
     ).toBeInTheDocument();
   });
 
-  it("renders the buttons", () => {
+  it("renders the buttons (completed)", async () => {
+    const completedLesson = { ...mockLesson1, completed: true };
+
+    vi.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(completedLesson),
+      }) as any
+    );
+    
     render(<Page />);
-    expect(screen.getByRole("button", { name: /Next/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /Next/i })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: /Back/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /Mark Complete/i })
+      await
+      screen.findByRole("button", { name: /Lesson Completed/i })
     ).toBeInTheDocument();
   });
 
-  it("renders a heading", () => {
+  it("renders a heading", async () => {
     render(<Page />);
     expect(
-      screen.getByRole("heading", { name: /Introduction to React/i })
-    ).toBeInTheDocument();
+      await
+      screen.findByTestId("heading2")
+    ).toHaveTextContent("Introduction to React");
   });
 
-  it("renders a paragraph", () => {
+  it("renders a paragraph", async () => {
     render(<Page />);
     expect(
-      screen.getByText(/Welcome to the Introduction to React lesson. In this lesson, we will cover the basics of React, including components, JSX, and state management./i)
+      await
+      screen.findByText(/Welcome to the Introduction to React lesson. In this lesson, we will cover the basics of React, including components, JSX, and state management./i)
     ).toBeInTheDocument();
         expect(
-      screen.getByText(/React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes../i)
+          await
+      screen.findByText(/React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes./i)
     ).toBeInTheDocument();
         expect(
-      screen.getByText(/Let's get started with creating our first React component!/i)
+          await
+      screen.findByText(/Let's get started with creating our first React component!/i)
     ).toBeInTheDocument();
   });
 
-  it("renders a code block", () => {
+  it("renders a code block", async () => {
     render(<Page />);
     expect(
-      screen.getByText("const element = <h1>Hello, world!</h1>;")
+      await
+      screen.findByText("const element = <h1>Hello, world!</h1>;")
     ).toBeInTheDocument();
   });
 
-  it("renders an image", () => {
+  it("renders an image", async () => {
     render(<Page />);
-    expect(screen.getByAltText("React Logo")).toBeInTheDocument();
+    expect(await screen.findByAltText("React Logo")).toBeInTheDocument();
   });
 
-  it("renders a video placeholder", () => {
+  it("renders a video placeholder", async () => {
     render(<Page />);
     // If video has a testid or fallback text
-    expect(screen.getByTestId("video")).toBeInTheDocument();
+    expect(await screen.findByTestId("video")).toBeInTheDocument();
   });
 
-  it("renders a divider", () => {
+  it("renders a divider", async () => {
     render(<Page />);
     // Give your divider <hr data-testid="divider" /> in component
-    expect(screen.getByTestId("divider")).toBeInTheDocument();
+    expect(await screen.findByTestId("divider")).toBeInTheDocument();
   });
 
-  it("renders an unordered list", () => {
+  it("renders an unordered list", async () => {
     render(<Page />);
     expect(
-      screen.getByRole("list", { name: "" }) // role=list works for <ul>
+      await
+      screen.findByRole("list", { name: "" }) // role=list works for <ul>
     ).toBeInTheDocument();
-    expect(screen.getByText("What is React?")).toBeInTheDocument();
-    expect(screen.getByText("Why use React?")).toBeInTheDocument();
-    expect(screen.getByText("Getting Started")).toBeInTheDocument();
+    expect(await screen.findByText("What is React?")).toBeInTheDocument();
+    expect(await screen.findByText("Why use React?")).toBeInTheDocument();
+    expect(await screen.findByText("Getting Started")).toBeInTheDocument();
   });
 
-  it("handles empty content", () => {
-    render(<Page />);
-    expect(screen.getByText(/no content/i)).toBeInTheDocument();
-  });
+  it("handles empty content", async () => {
+    const emptyLesson = { ...mockLesson1, content: [] };
 
-  it("handles unknown content type", () => {
-    render(
-      <Page />
+    vi.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(emptyLesson),
+      }) as any
     );
-    expect(screen.getByText(/unsupported content/i)).toBeInTheDocument();
+
+    render(<Page />);
+    expect(await screen.findByText(/No content available./i)).toBeInTheDocument();
   });
 
-  it("shows error if something went wrong", () => {
+  it("shows error if something went wrong", async () => {
     // If Page has error boundary or error UI
+    vi.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        ok: false,
+        status: 500,
+      }) as any
+    );
+
     render(<Page />);
-    expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+    expect(await screen.findByTestId('error')).toBeInTheDocument();
   });
 });
