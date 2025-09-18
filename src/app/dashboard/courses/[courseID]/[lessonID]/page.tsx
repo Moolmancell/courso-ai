@@ -31,8 +31,9 @@ export default function Page() {
         try {
             setLoading(true);
             const res = await fetch(
-                `/api/courses/${params.courseID}/${params.lessonID}`
+                `/api/tests/courses/${params.courseID}/${params.lessonID}`
             );
+            //test route change later
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             const json = await res.json();
             console.log("Fetched lesson data:", json);
