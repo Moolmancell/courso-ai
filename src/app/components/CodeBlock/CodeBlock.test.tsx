@@ -53,4 +53,10 @@ describe('CodeBlock', () => {
     // Verify that highlightAll was called again
     expect(spy).toHaveBeenCalledTimes(2);
   });
+
+  it.todo('it has the copy button', () => {
+    render(<CodeBlock {...props} />);
+    expect(screen.getByTestId('copy-button')).toBeInTheDocument();
+  })
+
 });
