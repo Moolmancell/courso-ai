@@ -15,13 +15,13 @@ export async function GET() {
             },
             {
                 "type": "video",
-                "src": "",
+                "src": "https://www.youtube.com/embed/ok-plXXHlWw",
                 "searchTerm": "introduction to HTML",
                 "id": 2
             },
             {
                 "type": "paragraph",
-                "text": "HTML stands for HyperText Markup Language. It's not a programming language; it's a markup language used to structure content on the internet. Think of it as the skeleton of a webpage, defining elements like headings, paragraphs, images, and links.",
+                "text": "HTML stands for <strong>HyperText Markup Language</strong>. It's not a programming language; it's a markup language used to structure content on the internet. Think of it as the skeleton of a webpage, defining elements like headings, paragraphs, images, and links.",
                 "id": 3
             },
             {
@@ -126,7 +126,7 @@ export async function GET() {
             },
             {
                 "type": "image",
-                "src": "",
+                "src": "https://www.mediacollege.com/internet/html/images/image-tag1.gif",
                 "alt": "example of the <img> element being used on a webpage",
                 "id": 22
             },
@@ -203,7 +203,7 @@ export async function GET() {
             },
             {
                 "type": "image",
-                "src": "",
+                "src": "https://i.ytimg.com/vi/rRgELhaCo5Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDrceAviHWfYIC5XHJeSBsgcL9pgw",
                 "alt": "example of <ol> and <ul> lists",
                 "id": 36
             },
