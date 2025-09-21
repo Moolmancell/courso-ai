@@ -54,7 +54,7 @@ describe('CodeBlock', () => {
     expect(spy).toHaveBeenCalledTimes(2);
   });
 
-  it.todo('it has the copy button', () => {
+  it('it has the copy button', () => {
     render(<CodeBlock {...props} />);
     expect(screen.getByTestId('copy-button')).toBeInTheDocument();
   })
