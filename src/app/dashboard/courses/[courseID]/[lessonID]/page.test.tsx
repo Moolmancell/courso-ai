@@ -3,6 +3,8 @@ import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
 import "@testing-library/jest-dom";
 import Page from "./page";
 
+vi.mock('highlight.js/styles/github.css', () => ({}));
+
 vi.mock("next/navigation", () => ({
   useParams: () => ({ courseID: "course-1", lessonID: "lesson-1" }),
 }));
