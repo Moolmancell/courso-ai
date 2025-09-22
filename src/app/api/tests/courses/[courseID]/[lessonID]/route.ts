@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
     const lesson = {
         id: "lesson-1",
-        title: "Introduction to React",
+        title: "Introduction to UX Design",
         previousLessonID: null,
         nextLessonID: "lesson-2",
         completed: false,
