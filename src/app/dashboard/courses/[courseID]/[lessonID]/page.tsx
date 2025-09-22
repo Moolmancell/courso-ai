@@ -12,6 +12,7 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import { redirect } from 'next/navigation';
+import { CheckCircleIcon } from "@heroicons/react/24/outline"; 
 import styles from './page.module.css'
 
 type LessonContent =
@@ -190,8 +191,9 @@ export default function Page() {
                             <ChevronLeftIcon className="h-auto w-6"></ChevronLeftIcon>
                             <span>Back</span>
                         </Button>
-                        <Button className="blue-button w-max">
+                        <Button className="blue-button flex flex-row gap-2 items-center">
                             {/*write a function that updates the lesson to completed and refresh the page*/}
+                            {lesson?.completed && <CheckCircleIcon className="h-auto w-6"></CheckCircleIcon>}
                             {lesson?.completed ? "Lesson Completed" : "Mark Complete"}
                         </Button>
                         <Button className="default-button flex flex-row gap-2 items-center" type="button" onClick={() => redirect(`/dashboard/courses/${lesson.id}/${lesson.nextLessonID}`)} disabled={!lesson.nextLessonID}>
