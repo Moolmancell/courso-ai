@@ -49,7 +49,6 @@ export default function Page() {
             //test route change later
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             const json = await res.json();
-            console.log("Fetched lesson data:", json);
             setLesson(json);
         } catch (error) {
             console.error("Error fetching lesson data:", error);
@@ -66,7 +65,7 @@ export default function Page() {
     return (
         <div className="px-4 md:px-8 py-6">
             {loading ? (
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" data-testid="loading">
                     <div className="xl:ml-72 flex flex-col gap-6 items-center justify-center max-w-[360px] bg-white p-4 rounded-3xl border border-zinc-300">
                         <svg
                             fill="#2B7FFFFF"
@@ -94,7 +93,7 @@ export default function Page() {
                     </div>
                 </div>
             ) : error ? (
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" data-testid="error">
                     <div className="xl:ml-72 min-w-72 flex flex-col gap-8 items-center bg-white p-8 rounded-3xl border border-zinc-300">
                         <ExclamationTriangleIcon className="size-20 w-20 h-20 text-zinc-500" strokeWidth={1.2} ></ExclamationTriangleIcon>
                         <div className="flex flex-col items-center justify-center gap-2">
