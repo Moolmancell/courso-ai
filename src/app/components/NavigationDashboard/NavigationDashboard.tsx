@@ -26,8 +26,8 @@ export function NavigationDashboard(): React.ReactElement {
   const links: NavLinkItem[] = [
     { name: "Home", href: "/dashboard", icon: HomeIcon },
     { name: "Courses", href: "/dashboard/courses", icon: AcademicCapIcon },
-    { name: "Statistics", href: "/dashboard/stats", icon: ChartBarSquareIcon },
-    { name: "History", href: "/dashboard/history", icon: ClockIcon }
+    //{ name: "Statistics", href: "/dashboard/stats", icon: ChartBarSquareIcon },
+    //{ name: "History", href: "/dashboard/history", icon: ClockIcon }
   ]
 
   return (
