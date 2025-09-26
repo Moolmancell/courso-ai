@@ -37,6 +37,7 @@ export default function LoginPage() {
         }
 
         setErrors((prev) => ({ ...prev, [name]: error }));
+        return error; //
     };
 
     // ✅ update values & validate while typing
@@ -51,25 +52,22 @@ export default function LoginPage() {
 
     const callHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        setLoading(true);
+        setSubmitError(null);
+        
         try {
-            setLoading(true);
-            setSubmitError(null);
 
-            validateField("email", email);
-            validateField("password", password);
+            const emailError = validateField("email", email);
+            const passwordError = validateField("password", password);
 
-            const hasErrors = !email || !password || errors.email || errors.password;
-            if (hasErrors) return;
-            
-            const formData = new FormData(e.currentTarget);
+            if (emailError || passwordError) {
+                setLoading(false); // Stop submission if there are errors
+                return;
+            }
 
             const res = await fetch("/api/login", { // change route later
                 method: "POST",
-                body: JSON.stringify({
-                    email: formData.get("email"),
-                    password: formData.get("password"),
-                }),
+                body: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" },
             });
 
