@@ -1,11 +1,11 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import handleSubmit from "./handleSubmit";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import { EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import GoogleIcon from '@/app/icons/GoogleIcon.svg'
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);
@@ -50,6 +50,8 @@ export default function LoginPage() {
     };
 
     const callHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         try {
             setLoading(true);
             setSubmitError(null);
@@ -57,14 +59,40 @@ export default function LoginPage() {
             validateField("email", email);
             validateField("password", password);
 
-            if (errors.email || errors.password) return;
+            const hasErrors = !email || !password || errors.email || errors.password;
+            if (hasErrors) return;
+            
+            const formData = new FormData(e.currentTarget);
 
-            await handleSubmit(e);
+            const res = await fetch("/api/login", { // change route later
+                method: "POST",
+                body: JSON.stringify({
+                    email: formData.get("email"),
+                    password: formData.get("password"),
+                }),
+                headers: { "Content-Type": "application/json" },
+            });
 
-            // ✅ redirect only if login succeeded
-            router.push("/dashboard");
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.message || "Login failed");
+            } else {
+                // ✅ redirect only if login succeeded
+                router.push("/dashboard");
+            }
+
+            /*
+
+            // Save JWT token
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+            }
+            
+            */
+
+
         } catch (err: any) {
-            setSubmitError(err.message);
+            setSubmitError(err.message || "Something went wrong");
         } finally {
             setLoading(false);
         }
@@ -134,14 +162,18 @@ export default function LoginPage() {
 
                 </div>
                 <div className="mt-8 flex flex-col gap-4">
-                    <button type="submit" className="blue-button" disabled={loading || !!errors.email || !!errors.password}>
+                    <button type="submit" className="blue-button" 
+                            disabled={loading 
+                                || !!errors.email || !!errors.password
+                                || email === "" || password === ""
+                            }>
                         {loading ? "Logging in..." : "Log In"}
                     </button>
 
                     <div className="h-0.5 w-full bg-zinc-300 rounded-full"></div>
 
                     <button type="button" className="default-button flex flex-row items-center justify-center gap-4">
-                        <Image src={GoogleIcon} alt="Google Icon" width={18} height={18}/>
+                        <Image src={GoogleIcon} alt="Google Icon" width={18} height={18} />
                         <span>
                             Log In with Google
                         </span>
@@ -150,7 +182,10 @@ export default function LoginPage() {
                 <p className="text-center mt-8">Don't have an account? <a href="/signup" className="font-semibold text-sm underline hover:no-underline">Sign Up</a></p>
             </form>
 
-            {submitError && <p className="error">{submitError}</p>}
+            {submitError && <div className="bg-red-100 rounded-3xl px-3 py-4 border border-red-300 flex flex-row gap-4 items-center">
+                <ExclamationTriangleIcon className="size-6 text-red-400" />
+                <p className="text-sm font-normal text-red-600">{submitError || 'An unexpected error occurred'}</p>
+            </div>}
 
         </div>
     );
