@@ -7,7 +7,7 @@ import { EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import GoogleIcon from '@/app/icons/GoogleIcon.svg'
 
-export default function Page() {
+export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
     const [email, setEmail] = useState("");
