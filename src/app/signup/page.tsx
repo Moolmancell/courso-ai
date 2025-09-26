@@ -135,6 +135,7 @@ export default function SignupPage() {
                 <div className="mb-4">
                     <label htmlFor="email" className="font-semibold text-sm mb-2 block">Email</label>
                     <input
+                        id="email"
                         type="email"
                         name="email"
                         className={`
