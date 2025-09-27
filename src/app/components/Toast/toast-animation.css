@@ -1,0 +1,29 @@
+.toast-animation {
+    animation-name: move-and-pause;
+    animation-duration: 9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; /* Keep the final state */ /* Keep the final state */
+}
+
+@keyframes move-and-pause {
+/* Start: Top position at 0s */
+    0% {
+        transform: translateY(-200%)
+    }
+
+    /* Arrive at center at 0.5s (approx 4.5%) */
+    4.5% {
+        transform: translateY(0%) /* Adjust for element's size */
+    }
+
+    /* Pause at center: Stay at 50% from 0.5s to 10.5s */
+    /* This is achieved by setting a keyframe for the same position at approx 95.5% (10.5s) */
+    95.5% {
+        transform: translateY(0%);
+    }
+
+    /* End: Move back to the top at 11s */
+    100% {
+        transform: translateY(-200%)
+    }
+}

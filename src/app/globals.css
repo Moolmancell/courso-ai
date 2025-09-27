@@ -2,6 +2,8 @@
 
 @import './components/Button/Button.css';
 
+@import './components/Toast/toast-animation.css';
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
