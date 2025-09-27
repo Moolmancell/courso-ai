@@ -6,6 +6,7 @@ import { EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import GoogleIcon from '@/app/icons/GoogleIcon.svg'
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { Toast } from "../components/Toast/Toast";
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);
@@ -180,10 +181,10 @@ export default function LoginPage() {
                 <p className="text-center mt-8">Don't have an account? <a href="/signup" className="font-semibold text-sm underline hover:no-underline">Sign Up</a></p>
             </form>
 
-            {submitError && <div className="bg-red-100 rounded-3xl px-3 py-4 border border-red-300 flex flex-row gap-4 items-center">
+            {submitError && <Toast className="bg-red-100 rounded-2xl text-red-600 px-3 py-4 border border-red-300 flex flex-row gap-4 items-center">
                 <ExclamationTriangleIcon className="size-6 text-red-400" />
                 <p className="text-sm font-normal text-red-600">{submitError || 'An unexpected error occurred'}</p>
-            </div>}
+            </Toast>}
 
         </div>
     );
