@@ -146,4 +146,21 @@ describe("Signup Page", () => {
 
         expect(await screen.findByText(/Signup failed/i)).toBeInTheDocument();
     })
+
+    it("it has two show password buttons", () => {
+      render(<SignupPage />);
+      expect(screen.getAllByTestId('togglePassword')).toHaveLength(2)
+    })
+
+    it('clicking the show password buttons shows the password', () => {
+      render(<SignupPage />);
+
+      const buttons = screen.getAllByTestId('togglePassword')
+
+      fireEvent.click(buttons[0])
+      fireEvent.click(buttons[1])
+      expect(buttons).toHaveLength(2);
+      expect(screen.getByPlaceholderText("Password")).toHaveAttribute("type", "text")
+      expect(screen.getByPlaceholderText("Confirm Password")).toHaveAttribute("type", "text")
+    })
 })

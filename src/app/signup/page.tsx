@@ -5,6 +5,8 @@ import Image from "next/image";
 import GoogleIcon from '@/app/icons/GoogleIcon.svg'
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { Toast } from "../components/Toast/Toast";
+import { EyeIcon } from "@heroicons/react/24/solid";
+import { EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -16,6 +18,8 @@ export default function SignupPage() {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [loading, setLoading] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     const validateField = (field: string, value: string) => {
         let error = "";
@@ -154,9 +158,10 @@ export default function SignupPage() {
 
                 <div className="mb-4">
                     <label htmlFor="password" className="font-semibold block text-sm mb-2">Password</label>
-                    <input
+                    <div className="relative w-full">
+                        <input
                         id="password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         className={`
                             ${errors.password ? "border-red-400 bg-red-50" : "bg-white border-zinc-300"}
@@ -167,15 +172,31 @@ export default function SignupPage() {
                         value={password}
                         onChange={handleChange}
                         required
-                    />
+                        />
+                        <button
+                        data-testid="togglePassword"
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-700 cursor-pointer"
+                        >
+                        {
+                            showPassword ?
+                                <EyeSlashIcon className="w-6 h-auto" />
+                                :
+                                <EyeIcon className="w-6 h-auto" />
+                        }
+                        </button>
+
+                    </div>
                     {errors.password && <p className="text-xs font-medium text-red-700 mt-2">{errors.password}</p>}
                 </div>
                 
                 <div className="mb-4">
                     <label htmlFor="confirmPassword" className="font-semibold block text-sm mb-2">Confirm Password</label>
-                    <input
+                    <div className="relative w-full">
+                        <input
                         id="confirmPassword"
-                        type="password"
+                        type={showConfirmPassword ? "text" : "password"}
                         name="confirmPassword"
                         className={`
                             ${errors.confirmPassword ? "border-red-400 bg-red-50" : "bg-white border-zinc-300"}
@@ -185,7 +206,22 @@ export default function SignupPage() {
                         placeholder="Confirm Password"
                         value={confirmPassword}
                         onChange={handleChange}
-                    />
+                        />
+                        <button
+                        data-testid="togglePassword"
+                        type="button"
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-700 cursor-pointer"
+                        >
+                        {
+                            showConfirmPassword ?
+                                <EyeSlashIcon className="w-6 h-auto" />
+                                :
+                                <EyeIcon className="w-6 h-auto" />
+                        }
+                        </button>
+
+                    </div>
                     {errors.confirmPassword && <p className="text-xs font-medium text-red-700 mt-2">{errors.confirmPassword}</p>}
 
                 </div>
