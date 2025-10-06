@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import { EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import GoogleIcon from '@/app/icons/GoogleIcon.svg'
+import GoogleIcon from '@/assets/icons/GoogleIcon.svg'
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { Toast } from "../components/Toast/Toast";
+import { Toast } from "../../components/ui/Toast/Toast";
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);

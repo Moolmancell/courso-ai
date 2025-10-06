@@ -1,6 +1,6 @@
 import { Button } from "../Button/Button"
 import Image from "next/image"
-import BookBlueCircle from '@/app/icons/BookBlueCircle.svg'
+import BookBlueCircle from '@/assets/icons/BookBlueCircle.svg'
 
 export function CourseCardv2({id,lessons, title, progress, courseLink}: 
     {id: number,lessons: number, title: string, progress: number, courseLink: string}) {

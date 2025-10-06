@@ -1,8 +1,8 @@
-import { FinishedCourseCard } from "../components/FinishedCourseCard/FinishedCourseCard"
-import { ActiveCourseCard } from "../components/ActiveCourseCard/ActiveCourseCard"
+import { FinishedCourseCard } from "../../components/ui/FinishedCourseCard/FinishedCourseCard"
+import { ActiveCourseCard } from "../../components/ui/ActiveCourseCard/ActiveCourseCard"
 import Link from "next/link"
-import { RecentCoursesv2 } from "../components/RecentCoursesv2/RecentCoursesv2"
-import { RecentHistory } from "../components/RecentHistory/RecentHistory"
+import { RecentCoursesv2 } from "../../components/ui/RecentCoursesv2/RecentCoursesv2"
+import { RecentHistory } from "../../components/ui/RecentHistory/RecentHistory"
 
 export default function Dashboard({nameofUser = "User"} : {nameofUser: string}) {
     return (

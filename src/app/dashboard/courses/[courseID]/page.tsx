@@ -1,12 +1,12 @@
 'use client';
 import { useEffect, useState } from "react";
-import { Accordion } from '@/app/components/Accordion/Accordion'
-import { Button } from '@/app/components/Button/Button'
+import { Accordion } from '@/components/ui/Accordion/Accordion'
+import { Button } from '@/components/ui/Button/Button'
 import { usePathname } from "next/navigation";
 import Image from "next/image"
 import BookBlueCircle from '@/app/icons/BookBlueCircle.svg'
 import { PlayIcon } from "@heroicons/react/24/outline";
-import { LessonTab } from "@/app/components/LessonTab/LessonTab";
+import { LessonTab } from "@/components/ui/LessonTab/LessonTab";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";

@@ -1,4 +1,4 @@
-import BlueFolder from "@/app/icons/BlueFolder.svg"
+import BlueFolder from "@/assets/icons/BlueFolder.svg"
 import Image from "next/image" 
 
 export function ActiveCourseCard({ numberOfFinished = 0 }) {

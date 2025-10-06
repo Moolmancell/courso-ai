@@ -1,10 +1,10 @@
 "use client"
 
-import { Button } from "@/app/components/Button/Button"
+import { Button } from "@/components/ui/Button/Button"
 import { PlusIcon } from "@heroicons/react/24/outline"
-import { Courses } from "@/app/components/Courses/Courses"
+import { Courses } from "@/components/ui/Courses/Courses"
 import { useState } from "react"
-import { CreateCourseForm } from "@/app/components/CreateCourseForm/CreateCourseForm"
+import { CreateCourseForm } from "@/components/ui/CreateCourseForm/CreateCourseForm"
 
 export default function CoursesPage() {
     const [isModalOpen, setIsModalOpen] = useState(false)

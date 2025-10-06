@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Button } from "@/app/components/Button/Button";
+import { Button } from "@/components/ui/Button/Button";
 import BookBlueCircle from '@/app/icons/BookBlueCircle.svg'
-import { CodeBlock } from "@/app/components/CodeBlock/CodeBlock";
+import { CodeBlock } from "@/components/ui/CodeBlock/CodeBlock";
 import Image from "next/image";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";

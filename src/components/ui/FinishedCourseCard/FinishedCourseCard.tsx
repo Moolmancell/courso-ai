@@ -1,4 +1,4 @@
-import GreenFolder from "@/app/icons/GreenFolder.svg"
+import GreenFolder from "@/assets/icons/GreenFolder.svg"
 import Image from "next/image" 
 
 export function FinishedCourseCard({ numberOfFinished = 0 }) {
