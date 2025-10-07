@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import { CourseCardv2 } from "../CourseCardv2/CourseCardv2"
 import { Button } from "../Button/Button"
 import { Pagination } from "../Pagination/Pagination"
-import { useDebounce } from "@/utils/useDebounce";
+import { useDebounce } from "@/hooks/useDebounce";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import { Skeleton } from "../CourseCardv2/Skeleton"
 
