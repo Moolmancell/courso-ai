@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
-import { CourseCard } from "../CourseCard/CourseCard";  
-import { TagVariant } from "../CourseTag/CourseTag.types";
+import { CourseCard } from "../(deprecated) CourseCard/CourseCard";  
+import { TagVariant } from "../(deprecated) CourseTag/CourseTag.types";
 
 interface CourseInfo { id: number, title: string, progress: number, source: TagVariant, courseLink: string }
 

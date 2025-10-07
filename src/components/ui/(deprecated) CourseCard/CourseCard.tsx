@@ -1,5 +1,5 @@
-import { CourseTag } from "../CourseTag/CourseTag"
-import { TagVariant } from "../CourseTag/CourseTag.types"
+import { CourseTag } from "../(deprecated) CourseTag/CourseTag"
+import { TagVariant } from "../(deprecated) CourseTag/CourseTag.types"
 import { Button } from "../Button/Button"  
 
 export function CourseCard({ title, progress, source, courseLink } : 
