@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button/Button";
-import BookBlueCircle from '@/app/icons/BookBlueCircle.svg'
+import BookBlueCircle from '@/assets/icons/BookBlueCircle.svg'
 import { CodeBlock } from "@/components/ui/CodeBlock/CodeBlock";
 import Image from "next/image";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
