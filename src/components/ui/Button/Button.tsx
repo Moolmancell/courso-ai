@@ -14,7 +14,7 @@ export function Button({children, type = 'button', href, onClick, className, dis
             return (
                 <Link href={href} className={`${className} default-button`} {...props}>
                     <div data-testid="button-container" className={`h-[21px] flex ${reverse ? "flex-row-reverse" : "flex-row"} gap-3 items-center`}>
-                        {Icon && <Icon data-testid="icon" />}
+                        {Icon && <Icon data-testid="icon" className="size-6 w-6 h-6" />}
                         {children}
                     </div>
                 </Link>
@@ -24,7 +24,7 @@ export function Button({children, type = 'button', href, onClick, className, dis
             return (
                 <button onClick={onClick} className={`${className} default-button`} disabled={disabled} {...props}>
                     <div data-testid="button-container" className={`h-[21px] flex ${reverse ? "flex-row-reverse" : "flex-row"} gap-3 items-center`}>
-                        {Icon && <Icon data-testid="icon" />}
+                        {Icon && <Icon data-testid="icon" className="size-6 w-6 h-6" />}
                         {children}
                     </div>
                 </button>
