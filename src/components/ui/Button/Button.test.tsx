@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Button } from './Button';
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import "@testing-library/jest-dom"
 
 describe("Button", () => {
@@ -20,6 +21,22 @@ describe("Button", () => {
     it("throw error if button is link and no href", () => {
         expect(() => render(<Button type="link">Sample Button</Button>))
             .toThrowError("`href` must be provided when `type` is 'link'");
+    })
+
+    it('if icon is provided show icon', () => {
+        const {rerender} = render(<Button Icon={ExclamationCircleIcon}></Button>)
+        expect(screen.getByTestId('icon')).toBeInTheDocument()
+
+        rerender(<Button type='link' href='/sample' Icon={ExclamationCircleIcon}></Button>)
+        expect(screen.getByTestId('icon')).toBeInTheDocument()
+    })
+
+    it('the icon can switch sides', () => {
+        const {rerender} = render(<Button Icon={ExclamationCircleIcon} reverse={true}></Button>)
+        expect(screen.getByTestId('button-container')).toHaveClass('flex-row-reverse')
+
+        rerender(<Button type='link' href='/sample' Icon={ExclamationCircleIcon} reverse={true}></Button>)
+        expect(screen.getByTestId('button-container')).toHaveClass('flex-row-reverse')
     })
 
     it("button is clickable", async () => { 
