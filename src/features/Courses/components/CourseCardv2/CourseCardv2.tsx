@@ -1,6 +1,7 @@
-import { Button } from "../Button/Button"
+import { Button } from "../../../../components/ui/Button/Button"
 import Image from "next/image"
 import BookBlueCircle from '@/assets/icons/BookBlueCircle.svg'
+import { ProgressBar } from "@/components/ui/ProgressBar/ProgressBar"  
 
 export function CourseCardv2({id,lessons, title, progress, courseLink}: 
     {id: number,lessons: number, title: string, progress: number, courseLink: string}) {
@@ -23,9 +24,7 @@ export function CourseCardv2({id,lessons, title, progress, courseLink}:
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <div className="w-full h-2 bg-zinc-200 rounded-3xl">
-                            <div data-testid="progress-bar" className="h-full bg-blue-500 rounded-3xl" style={{width: `${progress}%`}}></div>
-                        </div>
+                        <ProgressBar progress={progress} />
                         <p className="text-sm font-medium h-[18px]">{progress}% Completed</p>
                     </div>
                 </div>
