@@ -1,9 +1,9 @@
 // src/components/CourseList/CourseList.tsx
 import React from 'react';
-import { CourseCardv2 } from "@/components/ui/CourseCardv2/CourseCardv2"
-import { Skeleton } from "@/components/ui/CourseCardv2/Skeleton"
+import { CourseCardv2 } from "@/features/Courses/components/CourseCardv2/CourseCardv2"
+import { Skeleton } from "@/features/Courses/components/CourseCardv2/Skeleton"
 import { Button } from "@/components/ui/Button/Button"
-import { Course } from "../../hooks/useCoursesData"; // Import the interface
+import { Course } from "../../hooks/useCoursesData/useCoursesData"; // Import the interface
 
 interface CourseListProps {
     courses: Course[];
