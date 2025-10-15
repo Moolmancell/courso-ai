@@ -70,7 +70,7 @@ describe("[courseID] Page", () => {
 
   it('shows loading state', async () => {
     render(<Page />);
-    expect(await screen.findByTestId('loading')).toBeInTheDocument();
+    expect(screen.getByTestId('loading')).toBeInTheDocument();
   })
 
   it("renders the buttons (not yet completed)", async () => {
@@ -186,6 +186,6 @@ describe("[courseID] Page", () => {
     );
 
     render(<Page />);
-    expect(await screen.findByTestId('error')).toBeInTheDocument();
+    expect(await screen.findByText('Fetching Lesson Error')).toBeInTheDocument();
   });
 });
