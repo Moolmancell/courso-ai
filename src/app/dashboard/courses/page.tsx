@@ -1,19 +1,15 @@
-// src/components/Courses/Courses.tsx
 "use client"
 
 import { useState } from "react"
 import { Pagination } from "@/components/ui/Pagination/Pagination"
-import { useCoursesData } from "@/features/Courses/hooks/useCoursesData"; // Assuming path to your new hook
+import { useCoursesData } from "@/features/Courses/hooks/useCoursesData/useCoursesData"; // Assuming path to your new hook
 import { CourseList } from "@/features/Courses/components/CourseList/CourseList"; // New component
 import { CourseSearchBar } from "@/features/Courses/components/CourseSearchBar/CourseSearchBar"; // New component
 import { Button } from "@/components/ui/Button/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { CreateCourseForm } from "@/components/ui/CreateCourseForm/CreateCourseForm";
-// The course interface is now defined/imported in useCoursesData.ts
-// interface course { ... }
 
 export default function Courses({ userID }: { userID: string }) {
-    // 1. Local State for Control (Pagination and Search)
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -21,7 +17,6 @@ export default function Courses({ userID }: { userID: string }) {
     const handleOpenModal = () => setIsModalOpen(true)
     const handleCloseModal = () => setIsModalOpen(false)
 
-    // 2. Custom Hook for Data and Logic
     const {
         courses,
         loading,
@@ -30,7 +25,6 @@ export default function Courses({ userID }: { userID: string }) {
         fetchData // Exposed for the refresh button
     } = useCoursesData(userID, currentPage, searchTerm);
 
-    // 3. Handlers
     const handleSearchChange = (newSearchTerm: string) => {
         setSearchTerm(newSearchTerm);
         setCurrentPage(1); // Crucial: Reset page when search term changes
