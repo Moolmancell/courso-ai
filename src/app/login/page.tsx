@@ -1,165 +1,57 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { EyeIcon } from "@heroicons/react/24/solid";
-import { EyeSlashIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import GoogleIcon from '@/assets/icons/GoogleIcon.svg'
+import Link from "next/link";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { Toast } from "../../components/ui/Toast/Toast";
+import { useLoginForm } from "@/features/Login/hooks/useLoginForm";
+import { FormField } from "@/components/ui/FormField/FormField";
+import { PasswordField } from "@/components/ui/PasswordField/PasswordField";
 
 export default function LoginPage() {
-    const [loading, setLoading] = useState(false);
-    const [submitError, setSubmitError] = useState<string | null>(null);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    const [showPassword, setShowPassword] = useState(false);
+    
+    const {
+        loading,
+        submitError,
+        email,
+        password,
+        errors,
+        handleChange,
+        handleSubmit,
+    } = useLoginForm();
 
-    const router = useRouter();
-
-    const validateField = (name: string, value: string) => {
-        let error = "";
-
-        if (name === "email") {
-            if (!value) {
-                error = "Email is required.";
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                error = "Please enter a valid email address.";
-            }
-        }
-
-        if (name === "password") {
-            if (!value) {
-                error = "Password is required.";
-            } else if (value.length < 6) {
-                error = "Password must be at least 6 characters.";
-            }
-        }
-
-        setErrors((prev) => ({ ...prev, [name]: error }));
-        return error; //
-    };
-
-    // ✅ update values & validate while typing
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-
-        if (name === "email") setEmail(value);
-        if (name === "password") setPassword(value);
-
-        validateField(name, value);
-    };
-
-    const callHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        setSubmitError(null);
-        
-        try {
-
-            const emailError = validateField("email", email);
-            const passwordError = validateField("password", password);
-
-            if (emailError || passwordError) {
-                setLoading(false); // Stop submission if there are errors
-                return;
-            }
-
-            const res = await fetch("/api/login", { // change route later
-                method: "POST",
-                body: JSON.stringify({ email, password }),
-                headers: { "Content-Type": "application/json" },
-            });
-
-            const data = await res.json();
-            if (!res.ok) {
-                throw new Error(data.message || "Login failed");
-            } else {
-                // ✅ redirect only if login succeeded
-                router.push("/dashboard");
-            }
-
-            /*
-
-            // Save JWT token
-            if (data.token) {
-                localStorage.setItem("token", data.token);
-            }
-            
-            */
-
-
-        } catch (err: any) {
-            setSubmitError(err.message || "Something went wrong");
-        } finally {
-            setLoading(false);
-        }
-    };
     return (
         <div className="flex flex-col items-center bg-zinc-100 min-h-screen p-4">
-            <form onSubmit={callHandleSubmit} className="bg-white py-12 px-8 rounded-3xl border border-zinc-300 w-full max-w-lg box-border">
+            <form onSubmit={handleSubmit} className="bg-white py-12 px-8 rounded-3xl border border-zinc-300 w-full max-w-lg box-border">
                 <div className="mb-8">
                     <Image src='/LogoBlack.svg' alt='CourserAI' className="m-auto mb-6" width={147} height={35}></Image>
                     <h1 className="text-2xl font-bold mb-2 text-center">Welcome Back!</h1>
                     <p className="text-center">Log in to your account</p>
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="email" className="font-semibold text-sm mb-2 block">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        className={`
-                        ${errors.email ? "border-red-400 bg-red-50" : "bg-white border-zinc-300"}
-                        px-4 py-3 rounded-3xl border focus:outline-none focus:border-2 focus:bg-white focus:border-blue-300
-                        placeholder:text-zinc-700 placeholder:font-normal text-sm w-full
-                    `}
-                        name="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errors.email && <p className="text-xs font-medium text-red-700 mt-2">{errors.email}</p>}
-                </div>
+                
+                <FormField
+                    label="Email"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleChange}
+                    error={errors.email}
+                    required
+                />
 
-                <div className="mb-4">
-                    <label htmlFor="password" className="font-semibold block text-sm mb-2">Password</label>
-                    <div className="relative w-full">
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            id="password"
-                            className={`
-                        ${errors.password ? "border-red-400 bg-red-50" : "bg-white border-zinc-300"}
-                        px-4 py-3 rounded-3xl border focus:outline-none focus:border-2 focus:bg-white focus:border-blue-300
-                        placeholder:text-zinc-700 placeholder:font-normal text-sm w-full
-                    `}
-                            name="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={handleChange}
-                            required
-                        />
-                        <button
-                            data-testid="togglePassword"
-                            type="button"
-                            onClick={() => setShowPassword((prev) => !prev)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-700 cursor-pointer"
-                        >
-                            {
-                                showPassword ?
-                                    <EyeSlashIcon className="w-6 h-auto" />
-                                    :
-                                    <EyeIcon className="w-6 h-auto" />
-                            }
-                        </button>
-                    </div>
-                    {errors.password && <p className="text-xs font-medium text-red-700 mt-2">{errors.password}</p>}
-                    <p className="mt-4 font-semibold text-right ">
-                        <a href="/signup" className="text-sm underline hover:no-underline">Forgot Password?</a>
-                    </p>
-
-                </div>
+                <PasswordField
+                    label="Password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handleChange}
+                    error={errors.password}
+                    required
+                />
+                <Link href="/forgotpasssword" className="block text-right font-semibold text-sm underline hover:no-underline">Forgot Password?</Link>
                 <div className="mt-8 flex flex-col gap-4">
                     <button type="submit" className="blue-button" 
                             disabled={loading 

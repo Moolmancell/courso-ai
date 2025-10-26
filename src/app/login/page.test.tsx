@@ -19,6 +19,7 @@ describe("Login Page", () => {
 
         expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
 
+        
         expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
 
         expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
