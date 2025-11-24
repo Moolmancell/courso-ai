@@ -15,7 +15,7 @@ export function NavBar() {
     const [open, setOpen] = useState(false);  
 
     return (
-        <nav data-testid="navbar" className="w-full h-20 bg-white flex flex-row items-center justify-between p-4 md:px-8 border border-zinc-300 rounded-b-3xl">
+        <nav data-testid="navbar" className="w-full h-16 md:h-20 bg-white flex flex-row items-center justify-between p-4 md:px-8 border border-zinc-300 rounded-b-3xl">
             
             {/* 1. Mobile Hamburger Button (Only on Mobile) */}
             <button data-testid='hamburger-button' className="block md:hidden cursor-pointer rounded-lg hover:ring ring-zinc-300 ring-offset-2" onClick={() => setOpen(true)}>
